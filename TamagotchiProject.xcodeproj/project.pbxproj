@@ -9,21 +9,39 @@
 /* Begin PBXBuildFile section */
 		0404CC612C12B32B00F9CF55 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404CC602C12B32B00F9CF55 /* AppDelegate.swift */; };
 		0404CC632C12B32B00F9CF55 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404CC622C12B32B00F9CF55 /* SceneDelegate.swift */; };
-		0404CC652C12B32B00F9CF55 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404CC642C12B32B00F9CF55 /* ViewController.swift */; };
-		0404CC682C12B32B00F9CF55 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0404CC672C12B32B00F9CF55 /* Base */; };
 		0404CC6A2C12B32C00F9CF55 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0404CC692C12B32C00F9CF55 /* Assets.xcassets */; };
 		0404CC6D2C12B32C00F9CF55 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 0404CC6C2C12B32C00F9CF55 /* Base */; };
+		0404CC772C12B52400F9CF55 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404CC762C12B52400F9CF55 /* MainViewController.swift */; };
+		0404CC792C12B53100F9CF55 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404CC782C12B53100F9CF55 /* SettingViewController.swift */; };
+		0404CC7B2C12B54200F9CF55 /* ChangeNicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404CC7A2C12B54200F9CF55 /* ChangeNicknameViewController.swift */; };
+		0404CC7E2C12B57700F9CF55 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 0404CC7D2C12B57700F9CF55 /* .gitignore */; };
+		0404CC812C12B6A200F9CF55 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0404CC802C12B6A200F9CF55 /* SnapKit */; };
+		0404CC842C12B6B000F9CF55 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 0404CC832C12B6B000F9CF55 /* Toast */; };
+		0404CC8D2C12B77C00F9CF55 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404CC8C2C12B77C00F9CF55 /* Enum.swift */; };
+		0404CC8F2C12BC0200F9CF55 /* IdentifierProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404CC8E2C12BC0200F9CF55 /* IdentifierProtocol.swift */; };
+		0404CC952C12E3DB00F9CF55 /* SelectTGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404CC942C12E3DB00F9CF55 /* SelectTGViewController.swift */; };
+		0445CC1D2C12E4FF00CF0BED /* SelectTGCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445CC1C2C12E4FF00CF0BED /* SelectTGCollectionViewCell.swift */; };
+		0445CC1F2C12E80F00CF0BED /* Tamagotchi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445CC1E2C12E80F00CF0BED /* Tamagotchi.swift */; };
+		0445CC212C12F7AD00CF0BED /* SelectPresentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445CC202C12F7AD00CF0BED /* SelectPresentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0404CC5D2C12B32B00F9CF55 /* TamagotchiProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TamagotchiProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0404CC602C12B32B00F9CF55 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0404CC622C12B32B00F9CF55 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0404CC642C12B32B00F9CF55 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		0404CC672C12B32B00F9CF55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0404CC692C12B32C00F9CF55 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0404CC6C2C12B32C00F9CF55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0404CC6E2C12B32C00F9CF55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0404CC762C12B52400F9CF55 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		0404CC782C12B53100F9CF55 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		0404CC7A2C12B54200F9CF55 /* ChangeNicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNicknameViewController.swift; sourceTree = "<group>"; };
+		0404CC7D2C12B57700F9CF55 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		0404CC8C2C12B77C00F9CF55 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
+		0404CC8E2C12BC0200F9CF55 /* IdentifierProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifierProtocol.swift; sourceTree = "<group>"; };
+		0404CC942C12E3DB00F9CF55 /* SelectTGViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTGViewController.swift; sourceTree = "<group>"; };
+		0445CC1C2C12E4FF00CF0BED /* SelectTGCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTGCollectionViewCell.swift; sourceTree = "<group>"; };
+		0445CC1E2C12E80F00CF0BED /* Tamagotchi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tamagotchi.swift; sourceTree = "<group>"; };
+		0445CC202C12F7AD00CF0BED /* SelectPresentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPresentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +49,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0404CC842C12B6B000F9CF55 /* Toast in Frameworks */,
+				0404CC812C12B6A200F9CF55 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +60,7 @@
 		0404CC542C12B32B00F9CF55 = {
 			isa = PBXGroup;
 			children = (
+				0404CC7D2C12B57700F9CF55 /* .gitignore */,
 				0404CC5F2C12B32B00F9CF55 /* TamagotchiProject */,
 				0404CC5E2C12B32B00F9CF55 /* Products */,
 			);
@@ -58,13 +79,52 @@
 			children = (
 				0404CC602C12B32B00F9CF55 /* AppDelegate.swift */,
 				0404CC622C12B32B00F9CF55 /* SceneDelegate.swift */,
-				0404CC642C12B32B00F9CF55 /* ViewController.swift */,
-				0404CC662C12B32B00F9CF55 /* Main.storyboard */,
+				0404CC872C12B6D900F9CF55 /* SelectTG */,
+				0404CC892C12B6F400F9CF55 /* Main */,
+				0404CC8A2C12B6FE00F9CF55 /* Setting */,
+				0404CC8B2C12B70B00F9CF55 /* ChangeNickname */,
 				0404CC692C12B32C00F9CF55 /* Assets.xcassets */,
 				0404CC6B2C12B32C00F9CF55 /* LaunchScreen.storyboard */,
 				0404CC6E2C12B32C00F9CF55 /* Info.plist */,
+				0404CC8C2C12B77C00F9CF55 /* Enum.swift */,
+				0445CC1E2C12E80F00CF0BED /* Tamagotchi.swift */,
+				0404CC8E2C12BC0200F9CF55 /* IdentifierProtocol.swift */,
 			);
 			path = TamagotchiProject;
+			sourceTree = "<group>";
+		};
+		0404CC872C12B6D900F9CF55 /* SelectTG */ = {
+			isa = PBXGroup;
+			children = (
+				0404CC942C12E3DB00F9CF55 /* SelectTGViewController.swift */,
+				0445CC1C2C12E4FF00CF0BED /* SelectTGCollectionViewCell.swift */,
+				0445CC202C12F7AD00CF0BED /* SelectPresentViewController.swift */,
+			);
+			path = SelectTG;
+			sourceTree = "<group>";
+		};
+		0404CC892C12B6F400F9CF55 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				0404CC762C12B52400F9CF55 /* MainViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		0404CC8A2C12B6FE00F9CF55 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				0404CC782C12B53100F9CF55 /* SettingViewController.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		0404CC8B2C12B70B00F9CF55 /* ChangeNickname */ = {
+			isa = PBXGroup;
+			children = (
+				0404CC7A2C12B54200F9CF55 /* ChangeNicknameViewController.swift */,
+			);
+			path = ChangeNickname;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +143,10 @@
 			dependencies = (
 			);
 			name = TamagotchiProject;
+			packageProductDependencies = (
+				0404CC802C12B6A200F9CF55 /* SnapKit */,
+				0404CC832C12B6B000F9CF55 /* Toast */,
+			);
 			productName = TamagotchiProject;
 			productReference = 0404CC5D2C12B32B00F9CF55 /* TamagotchiProject.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +175,10 @@
 				Base,
 			);
 			mainGroup = 0404CC542C12B32B00F9CF55;
+			packageReferences = (
+				0404CC7F2C12B6A200F9CF55 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				0404CC822C12B6B000F9CF55 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+			);
 			productRefGroup = 0404CC5E2C12B32B00F9CF55 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -126,8 +194,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0404CC6A2C12B32C00F9CF55 /* Assets.xcassets in Resources */,
+				0404CC7E2C12B57700F9CF55 /* .gitignore in Resources */,
 				0404CC6D2C12B32C00F9CF55 /* Base in Resources */,
-				0404CC682C12B32B00F9CF55 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +206,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0404CC652C12B32B00F9CF55 /* ViewController.swift in Sources */,
+				0404CC7B2C12B54200F9CF55 /* ChangeNicknameViewController.swift in Sources */,
 				0404CC612C12B32B00F9CF55 /* AppDelegate.swift in Sources */,
+				0445CC1F2C12E80F00CF0BED /* Tamagotchi.swift in Sources */,
+				0404CC8D2C12B77C00F9CF55 /* Enum.swift in Sources */,
+				0445CC1D2C12E4FF00CF0BED /* SelectTGCollectionViewCell.swift in Sources */,
+				0404CC952C12E3DB00F9CF55 /* SelectTGViewController.swift in Sources */,
 				0404CC632C12B32B00F9CF55 /* SceneDelegate.swift in Sources */,
+				0445CC212C12F7AD00CF0BED /* SelectPresentViewController.swift in Sources */,
+				0404CC772C12B52400F9CF55 /* MainViewController.swift in Sources */,
+				0404CC8F2C12BC0200F9CF55 /* IdentifierProtocol.swift in Sources */,
+				0404CC792C12B53100F9CF55 /* SettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		0404CC662C12B32B00F9CF55 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0404CC672C12B32B00F9CF55 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		0404CC6B2C12B32C00F9CF55 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -296,9 +364,9 @@
 				INFOPLIST_FILE = TamagotchiProject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -306,9 +374,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.TamagotchiProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -323,9 +395,9 @@
 				INFOPLIST_FILE = TamagotchiProject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -333,9 +405,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.TamagotchiProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -361,6 +437,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0404CC7F2C12B6A200F9CF55 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		0404CC822C12B6B000F9CF55 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0404CC802C12B6A200F9CF55 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0404CC7F2C12B6A200F9CF55 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		0404CC832C12B6B000F9CF55 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0404CC822C12B6B000F9CF55 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0404CC552C12B32B00F9CF55 /* Project object */;
 }
