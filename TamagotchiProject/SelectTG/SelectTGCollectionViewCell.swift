@@ -13,17 +13,18 @@ class SelectTGCollectionViewCell: UICollectionViewCell {
     
     lazy var imageView: UIImageView = {
         let imgView = UIImageView()
-        imgView.image = UIImage(named: "1-1")
+        imgView.image = UIImage(named: "noImage")
         imgView.contentMode = .scaleAspectFit
+        
         return imgView
     }()
     
     lazy var tgNameBackView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
-        view.layer.borderColor = UIColor.gray.cgColor
+        view.backgroundColor = UIColor(red: 245/255, green: 252/255, blue: 252/255, alpha: 1)
+        view.layer.borderColor = UIColor(red: 77/255, green: 106/255, blue: 120/255, alpha: 1).cgColor
         view.layer.borderWidth = 0.8
-        view.layer.cornerRadius = 8
+        view.layer.cornerRadius = 6
         
         
         return view
@@ -32,9 +33,9 @@ class SelectTGCollectionViewCell: UICollectionViewCell {
     lazy var tgNameLabel: UILabel = {
        let label = UILabel()
         label.text = "준비중입니다"
-        label.textColor = .gray
+        label.textColor = UIColor(red: 77/255, green: 106/255, blue: 120/255, alpha: 1)
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 14)
+        label.font = .systemFont(ofSize: 14, weight: .semibold)
         
         return label
     }()
@@ -55,12 +56,15 @@ class SelectTGCollectionViewCell: UICollectionViewCell {
     
     func configureLayout() {
         imageView.snp.makeConstraints { make in
-            make.edges.equalTo(contentView.safeAreaLayoutGuide).inset(24)
+            //make.edges.equalTo(contentView.safeAreaLayoutGuide).inset(24)
+            make.centerX.equalTo(contentView)
+            make.size.equalTo(90)
         }
         
         tgNameBackView.snp.makeConstraints { make in
             make.top.equalTo(imageView.snp.bottom).offset(4)
             make.bottom.equalTo(contentView.safeAreaLayoutGuide)
+            make.height.equalTo(24)
             make.horizontalEdges.equalTo(contentView.safeAreaLayoutGuide).inset(12)
         }
         
@@ -75,9 +79,7 @@ class SelectTGCollectionViewCell: UICollectionViewCell {
     }
     
     func setLabelText(data: Tamagotchi) {
-        imageView.image = UIImage(named: data.image)
+        imageView.image = UIImage(named: data.mainImage)
         tgNameLabel.text = data.name
-        tgNameLabel.textColor = .black
-        tgNameBackView.layer.borderColor = UIColor.black.cgColor
     }
 }

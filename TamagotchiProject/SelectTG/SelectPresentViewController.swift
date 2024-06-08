@@ -19,8 +19,9 @@ class SelectPresentViewController: UIViewController {
     
     lazy var tgNameBackView: UIView = {
         let view = UIView()
-        view.layer.borderColor = UIColor.black.cgColor
-        view.layer.borderWidth = 0.5
+        view.backgroundColor = UIColor(red: 245/255, green: 252/255, blue: 252/255, alpha: 1)
+        view.layer.borderColor = UIColor(red: 77/255, green: 106/255, blue: 120/255, alpha: 1).cgColor
+        view.layer.borderWidth = 0.8
         view.layer.cornerRadius = 8
         
         
@@ -30,8 +31,8 @@ class SelectPresentViewController: UIViewController {
     lazy var tgNameLabel: UILabel = {
        let label = UILabel()
         label.text = "준비중입니다"
-        label.font = .systemFont(ofSize: 14)
-        label.textColor = .black
+        label.font = .systemFont(ofSize: 15, weight: .semibold)
+        label.textColor = UIColor(red: 77/255, green: 106/255, blue: 120/255, alpha: 1)
         label.textAlignment = .center
         
         return label
@@ -48,8 +49,8 @@ class SelectPresentViewController: UIViewController {
         let label = UILabel()
         label.text = "비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부"
         label.textAlignment = .center
-        label.textColor = .darkGray
-        label.font = .systemFont(ofSize: 14)
+        label.textColor = UIColor(red: 77/255, green: 106/255, blue: 120/255, alpha: 1)
+        label.font = .systemFont(ofSize: 15, weight: .semibold)
         label.numberOfLines = 0
         
         return label
@@ -77,6 +78,7 @@ class SelectPresentViewController: UIViewController {
         return button
     }()
     
+    var user: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,10 +106,10 @@ class SelectPresentViewController: UIViewController {
         }
         
         tgNameBackView.snp.makeConstraints { make in
-            make.top.equalTo(tamagotchiImgView.snp.bottom).offset(20)
+            make.top.equalTo(tamagotchiImgView.snp.bottom).offset(12)
             make.centerX.equalTo(tamagotchiImgView)
             make.width.equalTo(180)
-            make.height.equalTo(32)
+            make.height.equalTo(36)
         }
         
         tgNameLabel.snp.makeConstraints { make in
@@ -144,8 +146,8 @@ class SelectPresentViewController: UIViewController {
     }
     
     func setSelectTGView() {
-        if let t = tamagotchi {
-            tamagotchiImgView.image = UIImage(named: "\(t.image)")
+        if let t = self.tamagotchi {
+            tamagotchiImgView.image = UIImage(named: "\(t.mainImage)")
             tamagotchiImgView.contentMode = .scaleAspectFit
             tgNameLabel.text = t.name
         }
@@ -159,6 +161,11 @@ class SelectPresentViewController: UIViewController {
         if let presentingViewController = self.presentingViewController as? UINavigationController  {
             self.dismiss(animated: true) {
                 let vc = MainViewController()
+                if let t = self.tamagotchi, let user = self.user {
+                    vc.tamagotchi = t
+                    vc.user = user
+//                    vc.setTGMainView()
+                }
                 presentingViewController.pushViewController(vc, animated: true)
                 
             }

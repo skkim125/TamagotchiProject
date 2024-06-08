@@ -17,6 +17,20 @@ struct Tamagotchi {
     let name: String
     var rice: Int
     var water: Int
+    
+    var mainImage: String {
+        switch self.id {
+        case 1:
+            "1-6"
+        case 2:
+            "2-6"
+        case 3:
+            "3-6"
+        default:
+            ""
+        }
+    }
+    
     var level: Int {
         let levelCount = Int(self.rice / 5) + Int(self.water / 2)
         

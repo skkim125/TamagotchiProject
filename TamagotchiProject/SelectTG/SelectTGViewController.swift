@@ -25,7 +25,7 @@ class SelectTGViewController: UIViewController {
         return cv
     }()
     
-    var user: User = User(userName: "대장님")
+    var user: User = User(userName: "대장")
     var tamagotchi: Tamagotchi?
     
     override func viewDidLoad() {
@@ -44,8 +44,9 @@ class SelectTGViewController: UIViewController {
     
     func configureLayout() {
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(8)
-            make.bottom.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(view)
         }
     }
 }
@@ -63,6 +64,8 @@ extension SelectTGViewController: UICollectionViewDelegate, UICollectionViewData
             if i == indexPath.row {
                 cell.tamagotchi = user.tamagotchiList[i]
                 cell.setLabelText(data: user.tamagotchiList[i])
+            } else {
+                cell.isSelected = false
             }
         }
         
@@ -71,11 +74,11 @@ extension SelectTGViewController: UICollectionViewDelegate, UICollectionViewData
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.row)
         let cell = collectionView.cellForItem(at: indexPath) as! SelectTGCollectionViewCell
         let vc = SelectPresentViewController()
         guard let t = cell.tamagotchi else { return }
         vc.tamagotchi = t
+        vc.user = self.user
         vc.setSelectTGView()
         present(vc, animated: true)
     }
