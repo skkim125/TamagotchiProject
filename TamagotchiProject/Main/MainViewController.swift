@@ -11,14 +11,13 @@ class MainViewController: UIViewController {
     lazy var bubbleImgView: UIImageView = {
         let imgView = UIImageView()
         imgView.image = UIImage(named: "bubble")
-//        imgView.contentMode = .scaleAspectFit
         
         return imgView
     }()
     
     lazy var bubbleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(red: 77/255, green: 106/255, blue: 120/255, alpha: 1)
+        label.textColor = UIColor.mainColor
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 15, weight: .semibold)
         label.numberOfLines = 0
@@ -35,8 +34,8 @@ class MainViewController: UIViewController {
     
     lazy var tgNameBackView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 245/255, green: 252/255, blue: 252/255, alpha: 1)
-        view.layer.borderColor = UIColor(red: 77/255, green: 106/255, blue: 120/255, alpha: 1).cgColor
+        view.backgroundColor = UIColor.bgColor
+        view.layer.borderColor = UIColor.mainColor.cgColor
         view.layer.borderWidth = 0.8
         view.layer.cornerRadius = 6
         
@@ -46,7 +45,7 @@ class MainViewController: UIViewController {
     
     lazy var tgNameLabel: UILabel = {
        let label = UILabel()
-        label.textColor = UIColor(red: 77/255, green: 106/255, blue: 120/255, alpha: 1)
+        label.textColor = UIColor.mainColor
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 15, weight: .semibold)
         
@@ -55,7 +54,7 @@ class MainViewController: UIViewController {
     
     lazy var tgInfoLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(red: 77/255, green: 106/255, blue: 120/255, alpha: 1)
+        label.textColor = UIColor.mainColor
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 14, weight: .semibold)
         
@@ -64,7 +63,7 @@ class MainViewController: UIViewController {
     
     lazy var riceStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [raiseRiceTF, raiseRiceButton])
-        stackView.spacing = 8
+        stackView.spacing = 12
         
         return stackView
     }()
@@ -81,7 +80,7 @@ class MainViewController: UIViewController {
     
     lazy var raiseRiceTFDivider: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 77/255, green: 106/255, blue: 120/255, alpha: 1)
+        view.backgroundColor = UIColor.mainColor
         
         return view
     }()
@@ -89,10 +88,10 @@ class MainViewController: UIViewController {
     lazy var raiseRiceButton: UIButton = {
         let button = UIButton()
         button.setTitle("밥주기", for: .normal)
-        button.setTitleColor(UIColor(red: 77/255, green: 106/255, blue: 120/255, alpha: 1), for: .normal)
+        button.setTitleColor(UIColor.mainColor, for: .normal)
         button.setImage(UIImage(systemName: "drop.circle"), for: .normal)
-        button.tintColor = UIColor(red: 77/255, green: 106/255, blue: 120/255, alpha: 1)
-        button.layer.borderColor = UIColor(red: 77/255, green: 106/255, blue: 120/255, alpha: 1).cgColor
+        button.tintColor = UIColor.mainColor
+        button.layer.borderColor = UIColor.mainColor.cgColor
         button.layer.borderWidth = 1.5
         button.layer.cornerRadius = 8
         button.backgroundColor = .white
@@ -102,7 +101,7 @@ class MainViewController: UIViewController {
     
     lazy var waterStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [raiseWaterTF, raiseWaterButton])
-        stackView.spacing = 8
+        stackView.spacing = 12
         
         return stackView
     }()
@@ -119,7 +118,7 @@ class MainViewController: UIViewController {
     
     lazy var raiseWaterTFDivider: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 77/255, green: 106/255, blue: 120/255, alpha: 1)
+        view.backgroundColor = UIColor.mainColor
         
         return view
     }()
@@ -127,10 +126,10 @@ class MainViewController: UIViewController {
     lazy var raiseWaterButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("물주기", for: .normal)
-        button.setTitleColor(UIColor(red: 77/255, green: 106/255, blue: 120/255, alpha: 1), for: .normal)
+        button.setTitleColor(UIColor.mainColor, for: .normal)
         button.setImage(UIImage(systemName: "leaf.circle"), for: .normal)
-        button.tintColor = UIColor(red: 77/255, green: 106/255, blue: 120/255, alpha: 1)
-        button.layer.borderColor = UIColor(red: 77/255, green: 106/255, blue: 120/255, alpha: 1).cgColor
+        button.tintColor = UIColor.mainColor
+        button.layer.borderColor = UIColor.mainColor.cgColor
         button.layer.borderWidth = 1.5
         button.layer.cornerRadius = 8
         button.backgroundColor = .white
@@ -140,6 +139,7 @@ class MainViewController: UIViewController {
     
     var tamagotchi: Tamagotchi?
     var user: User?
+    var viewType: ViewType = .main
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -207,7 +207,7 @@ class MainViewController: UIViewController {
         
         riceStackView.snp.makeConstraints { make in
             make.top.equalTo(tgInfoLabel.snp.bottom).offset(28)
-            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(80)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(70)
             make.height.equalTo(36)
         }
         
@@ -224,7 +224,7 @@ class MainViewController: UIViewController {
         
         waterStackView.snp.makeConstraints { make in
             make.top.equalTo(riceStackView.snp.bottom).offset(20)
-            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(80)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(70)
             make.height.equalTo(36)
         }
         
@@ -244,7 +244,8 @@ class MainViewController: UIViewController {
         let right = UIBarButtonItem(image: UIImage(systemName: "person.circle"), style: .plain, target: self, action: #selector(moveUserVIew))
         navigationItem.rightBarButtonItem = right
         navigationItem.hidesBackButton = true
-        navigationController?.navigationBar.tintColor = .darkGray
+        navigationItem.title = viewType.navTitle
+        navigationController?.navigationBar.tintColor = UIColor.mainColor
         UINavigationBarAppearance().shadowColor = .lightGray
         navigationController?.navigationBar.scrollEdgeAppearance = UINavigationBarAppearance()
     }
@@ -260,7 +261,9 @@ class MainViewController: UIViewController {
     
     @objc func moveUserVIew() {
         let vc = SettingViewController()
-        
+        viewType = .setting
+        vc.user = self.user
+        vc.navigationItem.title = viewType.navTitle
         navigationController?.pushViewController(vc, animated: true)
     }
 }

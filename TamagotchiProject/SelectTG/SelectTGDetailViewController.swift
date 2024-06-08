@@ -1,5 +1,5 @@
 //
-//  SelectPresentViewController.swift
+//  SelectTGDetailViewController.swift
 //  TamagotchiProject
 //
 //  Created by 김상규 on 6/7/24.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class SelectPresentViewController: UIViewController {
+class SelectTGDetailViewController: UIViewController {
     var tamagotchi: Tamagotchi?
     
     lazy var tamagotchiImgView: UIImageView = {
@@ -19,8 +19,8 @@ class SelectPresentViewController: UIViewController {
     
     lazy var tgNameBackView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 245/255, green: 252/255, blue: 252/255, alpha: 1)
-        view.layer.borderColor = UIColor(red: 77/255, green: 106/255, blue: 120/255, alpha: 1).cgColor
+        view.backgroundColor = UIColor.bgColor
+        view.layer.borderColor = UIColor.mainColor.cgColor
         view.layer.borderWidth = 0.8
         view.layer.cornerRadius = 8
         
@@ -32,7 +32,7 @@ class SelectPresentViewController: UIViewController {
        let label = UILabel()
         label.text = "준비중입니다"
         label.font = .systemFont(ofSize: 15, weight: .semibold)
-        label.textColor = UIColor(red: 77/255, green: 106/255, blue: 120/255, alpha: 1)
+        label.textColor = UIColor.mainColor
         label.textAlignment = .center
         
         return label
@@ -49,7 +49,7 @@ class SelectPresentViewController: UIViewController {
         let label = UILabel()
         label.text = "비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부비비디바비디부"
         label.textAlignment = .center
-        label.textColor = UIColor(red: 77/255, green: 106/255, blue: 120/255, alpha: 1)
+        label.textColor = UIColor.mainColor
         label.font = .systemFont(ofSize: 15, weight: .semibold)
         label.numberOfLines = 0
         
@@ -70,7 +70,7 @@ class SelectPresentViewController: UIViewController {
     lazy var chooseButton: UIButton = {
         let button = UIButton()
         button.setTitle("선택하기", for: .normal)
-        button.backgroundColor = .blue.withAlphaComponent(0.8)
+        button.backgroundColor = UIColor.mainColor
         button.clipsToBounds = true
         button.layer.cornerRadius = 12
         button.addTarget(self, action: #selector(ChooseButtonClicked), for: .touchUpInside)
@@ -164,7 +164,6 @@ class SelectPresentViewController: UIViewController {
                 if let t = self.tamagotchi, let user = self.user {
                     vc.tamagotchi = t
                     vc.user = user
-//                    vc.setTGMainView()
                 }
                 presentingViewController.pushViewController(vc, animated: true)
                 

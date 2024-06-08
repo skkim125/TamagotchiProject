@@ -8,8 +8,9 @@
 import Foundation
 
 struct User {
-    let userName: String
-    let tamagotchiList: [Tamagotchi] = [Tamagotchi(id: 1, name: "풀 다마고치", rice: 0, water: 0), Tamagotchi(id: 2, name: "태양 다마고치", rice: 0, water: 0), Tamagotchi(id: 3, name: "별 다마고치", rice: 0, water: 0)]
+    var userName: String = "대장"
+    var resetBool: Bool = false
+    var tamagotchiList: [Tamagotchi] = [Tamagotchi(id: 1, name: "풀 다마고치", rice: 0, water: 0), Tamagotchi(id: 2, name: "태양 다마고치", rice: 0, water: 0), Tamagotchi(id: 3, name: "별 다마고치", rice: 0, water: 0)]
 }
 
 struct Tamagotchi {

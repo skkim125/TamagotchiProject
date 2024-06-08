@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 class SelectTGViewController: UIViewController {
+    
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let width = (UIScreen.main.bounds.width / 3)-8
@@ -25,14 +26,15 @@ class SelectTGViewController: UIViewController {
         return cv
     }()
     
-    var user: User = User(userName: "대장")
+    var user: User = User()
     var tamagotchi: Tamagotchi?
+    var viewType: ViewType = .selectTG
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        navigationItem.title = "다마고치 선택하기"
+        navigationItem.title = viewType.navTitle
         configureHierarchy()
         configureLayout()
     }
@@ -44,7 +46,7 @@ class SelectTGViewController: UIViewController {
     
     func configureLayout() {
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(12)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(view)
         }
@@ -75,7 +77,7 @@ extension SelectTGViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! SelectTGCollectionViewCell
-        let vc = SelectPresentViewController()
+        let vc = SelectTGDetailViewController()
         guard let t = cell.tamagotchi else { return }
         vc.tamagotchi = t
         vc.user = self.user

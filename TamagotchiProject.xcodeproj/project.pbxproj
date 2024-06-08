@@ -22,7 +22,9 @@
 		0404CC952C12E3DB00F9CF55 /* SelectTGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404CC942C12E3DB00F9CF55 /* SelectTGViewController.swift */; };
 		0445CC1D2C12E4FF00CF0BED /* SelectTGCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445CC1C2C12E4FF00CF0BED /* SelectTGCollectionViewCell.swift */; };
 		0445CC1F2C12E80F00CF0BED /* Tamagotchi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445CC1E2C12E80F00CF0BED /* Tamagotchi.swift */; };
-		0445CC212C12F7AD00CF0BED /* SelectPresentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445CC202C12F7AD00CF0BED /* SelectPresentViewController.swift */; };
+		0445CC212C12F7AD00CF0BED /* SelectTGDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445CC202C12F7AD00CF0BED /* SelectTGDetailViewController.swift */; };
+		0445CC232C145CA600CF0BED /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445CC222C145CA600CF0BED /* SettingTableViewCell.swift */; };
+		0445CC252C14891E00CF0BED /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445CC242C14891E00CF0BED /* Color+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +43,9 @@
 		0404CC942C12E3DB00F9CF55 /* SelectTGViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTGViewController.swift; sourceTree = "<group>"; };
 		0445CC1C2C12E4FF00CF0BED /* SelectTGCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTGCollectionViewCell.swift; sourceTree = "<group>"; };
 		0445CC1E2C12E80F00CF0BED /* Tamagotchi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tamagotchi.swift; sourceTree = "<group>"; };
-		0445CC202C12F7AD00CF0BED /* SelectPresentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPresentViewController.swift; sourceTree = "<group>"; };
+		0445CC202C12F7AD00CF0BED /* SelectTGDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTGDetailViewController.swift; sourceTree = "<group>"; };
+		0445CC222C145CA600CF0BED /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		0445CC242C14891E00CF0BED /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,9 +90,10 @@
 				0404CC692C12B32C00F9CF55 /* Assets.xcassets */,
 				0404CC6B2C12B32C00F9CF55 /* LaunchScreen.storyboard */,
 				0404CC6E2C12B32C00F9CF55 /* Info.plist */,
-				0404CC8C2C12B77C00F9CF55 /* Enum.swift */,
 				0445CC1E2C12E80F00CF0BED /* Tamagotchi.swift */,
+				0404CC8C2C12B77C00F9CF55 /* Enum.swift */,
 				0404CC8E2C12BC0200F9CF55 /* IdentifierProtocol.swift */,
+				0445CC242C14891E00CF0BED /* Color+Extension.swift */,
 			);
 			path = TamagotchiProject;
 			sourceTree = "<group>";
@@ -98,7 +103,7 @@
 			children = (
 				0404CC942C12E3DB00F9CF55 /* SelectTGViewController.swift */,
 				0445CC1C2C12E4FF00CF0BED /* SelectTGCollectionViewCell.swift */,
-				0445CC202C12F7AD00CF0BED /* SelectPresentViewController.swift */,
+				0445CC202C12F7AD00CF0BED /* SelectTGDetailViewController.swift */,
 			);
 			path = SelectTG;
 			sourceTree = "<group>";
@@ -115,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				0404CC782C12B53100F9CF55 /* SettingViewController.swift */,
+				0445CC222C145CA600CF0BED /* SettingTableViewCell.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -212,11 +218,13 @@
 				0404CC8D2C12B77C00F9CF55 /* Enum.swift in Sources */,
 				0445CC1D2C12E4FF00CF0BED /* SelectTGCollectionViewCell.swift in Sources */,
 				0404CC952C12E3DB00F9CF55 /* SelectTGViewController.swift in Sources */,
+				0445CC232C145CA600CF0BED /* SettingTableViewCell.swift in Sources */,
 				0404CC632C12B32B00F9CF55 /* SceneDelegate.swift in Sources */,
-				0445CC212C12F7AD00CF0BED /* SelectPresentViewController.swift in Sources */,
+				0445CC212C12F7AD00CF0BED /* SelectTGDetailViewController.swift in Sources */,
 				0404CC772C12B52400F9CF55 /* MainViewController.swift in Sources */,
 				0404CC8F2C12BC0200F9CF55 /* IdentifierProtocol.swift in Sources */,
 				0404CC792C12B53100F9CF55 /* SettingViewController.swift in Sources */,
+				0445CC252C14891E00CF0BED /* Color+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

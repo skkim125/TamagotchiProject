@@ -21,8 +21,8 @@ class SelectTGCollectionViewCell: UICollectionViewCell {
     
     lazy var tgNameBackView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 245/255, green: 252/255, blue: 252/255, alpha: 1)
-        view.layer.borderColor = UIColor(red: 77/255, green: 106/255, blue: 120/255, alpha: 1).cgColor
+        view.backgroundColor = UIColor.bgColor
+        view.layer.borderColor = UIColor.mainColor.cgColor
         view.layer.borderWidth = 0.8
         view.layer.cornerRadius = 6
         
@@ -33,7 +33,7 @@ class SelectTGCollectionViewCell: UICollectionViewCell {
     lazy var tgNameLabel: UILabel = {
        let label = UILabel()
         label.text = "준비중입니다"
-        label.textColor = UIColor(red: 77/255, green: 106/255, blue: 120/255, alpha: 1)
+        label.textColor = UIColor.mainColor
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 14, weight: .semibold)
         
