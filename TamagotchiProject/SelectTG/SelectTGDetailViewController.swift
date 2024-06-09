@@ -161,12 +161,10 @@ class SelectTGDetailViewController: UIViewController {
             self.dismiss(animated: true) {
                 let vc = MainViewController()
                 if let selectTG = self.tamagotchi {
-                    print("selectTG:", selectTG)
                     vc.tamagotchi = selectTG
                     UserDefaults.standard.set(selectTG.id, forKey: "lastTgID")
                 }
                 UserDefaults.standard.set("\(true)", forKey: "first_Reset")
-                UserDefaults.standard.set(User.userName, forKey: "userName")
                 
                 presentingViewController.pushViewController(vc, animated: true)
             }

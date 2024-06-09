@@ -35,12 +35,11 @@ class ChangeNicknameViewController: UIViewController {
         view.backgroundColor = .white
         configureHierarchy()
         configureLayout()
-        setNavigationView()
-        setTFPlaceholder()
+        configureNavigationView()
+        configureTF()
     }
     
     func configureHierarchy() {
-        // MARK: addSubView()
         view.addSubview(nicknameTF)
         view.addSubview(nicknameTFDivider)
     }
@@ -59,12 +58,12 @@ class ChangeNicknameViewController: UIViewController {
         }
     }
     
-    func setNavigationView() {
+    func configureNavigationView() {
         let save = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(saveButtonClicked))
         navigationItem.rightBarButtonItem = save
     }
     
-    func setTFPlaceholder() {
+    func configureTF() {
         if let userName = UserDefaults.standard.string(forKey: "userName") {
             nicknameTF.placeholder = userName
         }

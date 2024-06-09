@@ -9,8 +9,6 @@ import UIKit
 import SnapKit
 
 class SelectTGCollectionViewCell: UICollectionViewCell {
-    var tamagotchi: Tamagotchi?
-    
     lazy var imageView: UIImageView = {
         let imgView = UIImageView()
         imgView.image = UIImage(named: "noImage")
@@ -40,6 +38,8 @@ class SelectTGCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    var tamagotchi: Tamagotchi?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -48,7 +48,6 @@ class SelectTGCollectionViewCell: UICollectionViewCell {
     }
     
     func configureHierarchy() {
-        // MARK: addSubView()
         contentView.addSubview(imageView)
         contentView.addSubview(tgNameBackView)
         contentView.addSubview(tgNameLabel)
@@ -56,7 +55,6 @@ class SelectTGCollectionViewCell: UICollectionViewCell {
     
     func configureLayout() {
         imageView.snp.makeConstraints { make in
-            //make.edges.equalTo(contentView.safeAreaLayoutGuide).inset(24)
             make.centerX.equalTo(contentView)
             make.size.equalTo(90)
         }

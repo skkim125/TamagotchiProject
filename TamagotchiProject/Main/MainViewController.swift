@@ -149,11 +149,10 @@ class MainViewController: UIViewController {
         configureHierarchy()
         configureLayout()
         configureNavigationView()
-        setTGMainView()
+        configureMainVIewUI()
     }
     
     func configureHierarchy() {
-        // MARK: addSubView()
         view.addSubview(bubbleImgView)
         view.addSubview(bubbleLabel)
         view.addSubview(tgImageView)
@@ -255,15 +254,12 @@ class MainViewController: UIViewController {
         navigationController?.navigationBar.scrollEdgeAppearance = UINavigationBarAppearance()
     }
     
-    func setTGMainView() {
+    func configureMainVIewUI() {
         if let t = self.tamagotchi {
             let rice = UserDefaults.standard.integer(forKey: "\(t.id) 밥알")
-            UserDefaults.standard.set(rice, forKey: "\(t.id) 밥알")
-            
             let water = UserDefaults.standard.integer(forKey: "\(t.id) 물")
-            UserDefaults.standard.set(water, forKey: "\(t.id) 물")
-            
             let level = Tamagotchi.setLevel(rice: rice, water: water)
+            
             tgNameLabel.text = t.name
             tgInfoLabel.text = "Lv.\(level) | 밥알 \(rice)개 | 물방울 \(water)개"
             tgImageView.image = UIImage(named: Tamagotchi.setImage(id: t.id, level: level))
@@ -279,11 +275,9 @@ class MainViewController: UIViewController {
     }
     
     @objc func raiseRice() {
-        print("\(#function) 누름")
         
         if let t = self.tamagotchi, let riceStr = raiseRiceTF.text {
             let beforeRice = UserDefaults.standard.integer(forKey: "\(t.id) 밥알")
-            print("더하기전 밥알", beforeRice)
             if riceStr.isEmpty {
                let afterRice = beforeRice + 1
                 UserDefaults.standard.set(afterRice, forKey: "\(t.id) 밥알")
@@ -298,28 +292,23 @@ class MainViewController: UIViewController {
                     }
                 }
             }
-            print("더한 후 밥알", UserDefaults.standard.integer(forKey: "\(t.id) 밥알"))
         }
         
-        setTGMainView()
+        configureMainVIewUI()
         raiseRiceTF.text = nil
     }
     
     @objc func raiseWater() {
-        print("\(#function) 누름")
         
         if let t = self.tamagotchi, let waterStr = raiseWaterTF.text {
             let beforeWater = UserDefaults.standard.integer(forKey: "\(t.id) 물")
-            print("더하기전 물", beforeWater)
             if waterStr.isEmpty {
                let afterWater = beforeWater + 1
-                User.user.tamagotchiList[t.id].water = afterWater
                 UserDefaults.standard.set(afterWater, forKey: "\(t.id) 물")
             } else {
                 if let water = Int(waterStr) {
                     if water > 0 {
                         let afterWater = beforeWater + water
-                        User.user.tamagotchiList[t.id].water = afterWater
                         UserDefaults.standard.set(afterWater, forKey: "\(t.id) 물")
                     } else {
                         raiseWaterTF.text = nil
@@ -327,10 +316,9 @@ class MainViewController: UIViewController {
                     }
                 }
             }
-            print("더한 후 물", UserDefaults.standard.integer(forKey: "\(t.id) 물"))
         }
 
-        setTGMainView()
+        configureMainVIewUI()
         raiseWaterTF.text = nil
     }
     

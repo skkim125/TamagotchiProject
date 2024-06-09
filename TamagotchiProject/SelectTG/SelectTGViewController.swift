@@ -31,15 +31,15 @@ class SelectTGViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .white
-        navigationItem.title = viewType.navTitle
+        
+        UserDefaults.standard.set(User.userName, forKey: "userName")
         configureHierarchy()
         configureLayout()
+        configureNavigationView()
     }
     
     func configureHierarchy() {
-        // MARK: addSubView()
         view.addSubview(collectionView)
     }
     
@@ -49,6 +49,10 @@ class SelectTGViewController: UIViewController {
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(view)
         }
+    }
+    
+    func configureNavigationView() {
+        navigationItem.title = viewType.navTitle
     }
 }
 
@@ -76,10 +80,14 @@ extension SelectTGViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! SelectTGCollectionViewCell
-        let vc = SelectTGDetailViewController()
         guard let t = cell.tamagotchi else { return }
+        viewSetting(tamagotchi: t)
+    }
+    
+    func viewSetting(tamagotchi: Tamagotchi) {
+        let vc = SelectTGDetailViewController()
         vc.viewType = self.viewType
-        vc.tamagotchi = t
+        vc.tamagotchi = tamagotchi
         vc.setSelectTGView()
         present(vc, animated: true)
     }

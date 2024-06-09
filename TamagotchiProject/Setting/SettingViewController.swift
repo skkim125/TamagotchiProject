@@ -34,8 +34,14 @@ class SettingViewController: UIViewController {
         configureNavigationView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        userName = UserDefaults.standard.string(forKey: "userName")
+        tableView.reloadData()
+    }
+    
     func configureHierarchy() {
-        // MARK: addSubView()
         view.addSubview(tableView)
     }
     
@@ -53,12 +59,6 @@ class SettingViewController: UIViewController {
     
     @objc func backButtonClicked() {
         navigationController?.popViewController(animated: true)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        userName = UserDefaults.standard.string(forKey: "userName")
-        tableView.reloadData()
     }
 }
 
@@ -86,43 +86,23 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch setting {
         case .changNicname:
-            let vc = ChangeNicknameViewController()
-            if let userName = UserDefaults.standard.string(forKey: "userName") {
-                vc.nicknameTF.placeholder = userName
-            }
-            viewType = .changeNicname
-            vc.navigationItem.title = viewType.navTitle
-            navigationController?.pushViewController(vc, animated: true)
+            changeNicknameUI()
             
         case .changeTG:
-            let vc = SelectTGViewController()
-            vc.viewType = .changeTG
-            vc.navigationItem.title = viewType.navTitle
-            navigationController?.pushViewController(vc, animated: true)
+            changeTGUI()
             
         case .reset:
-            let alert = UIAlertController(title: "데이터 초기화", message: "정말로 초기화하시겠습니까?", preferredStyle: .alert)
-            let cancel = UIAlertAction(title: "아니요", style: .cancel)
-            let reset = UIAlertAction(title: "네", style: .destructive) { _ in
-                UserDefaults.standard.set(false, forKey: "first_Reset")
-                self.removeUDAll()
-                let vc = SelectTGViewController()
-                vc.navigationItem.hidesBackButton = true
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-            alert.addAction(cancel)
-            alert.addAction(reset)
-            
-            present(alert, animated: true)
+            resetUI()
         }
-        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
+}
+
+extension SettingViewController {
     
     func removeUDAll() {
         var list = User.user.tamagotchiList
         
         for i in 0...list.count-1 {
-            print(list[i].id)
             list[i].rice = 0
             list[i].water = 0
             UserDefaults.standard.removeObject(forKey: "\(list[i].id) 밥알")
@@ -131,5 +111,38 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             UserDefaults.standard.removeObject(forKey: "lastTgID")
             UserDefaults.standard.removeObject(forKey: "userName")
         }
+    }
+    
+    func changeNicknameUI() {
+        let vc = ChangeNicknameViewController()
+        if let userName = UserDefaults.standard.string(forKey: "userName") {
+            vc.nicknameTF.placeholder = userName
+        }
+        viewType = .changeNicname
+        vc.navigationItem.title = viewType.navTitle
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func changeTGUI() {
+        let vc = SelectTGViewController()
+        vc.viewType = .changeTG
+        vc.navigationItem.title = viewType.navTitle
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func resetUI() {
+        let alert = UIAlertController(title: "데이터 초기화", message: "정말로 초기화하시겠습니까?", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "아니요", style: .cancel)
+        let reset = UIAlertAction(title: "네", style: .destructive) { _ in
+            UserDefaults.standard.set(false, forKey: "first_Reset")
+            self.removeUDAll()
+            let vc = SelectTGViewController()
+            vc.navigationItem.hidesBackButton = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        alert.addAction(cancel)
+        alert.addAction(reset)
+        
+        present(alert, animated: true)
     }
 }
