@@ -10,7 +10,7 @@ import UIKit
 class SettingTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: .value1, reuseIdentifier: reuseIdentifier)
+        super.init(style: .value1, reuseIdentifier: SettingTableViewCell.id)
     }
     
     required init?(coder: NSCoder) {
@@ -20,7 +20,7 @@ class SettingTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        backgroundColor = .clear
+        backgroundColor = .white
     }
     
     func setUI(setting: SettingType) {

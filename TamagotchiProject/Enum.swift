@@ -42,7 +42,7 @@ enum ViewType {
         case .selectTG:
             "다마고치 선택하기"
         case .main:
-            "대장님 이름 설정하기"
+            "대장님의 다마고치"
         case .setting:
             "설정"
         case .changeNicname:

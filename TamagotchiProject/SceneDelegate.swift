@@ -14,10 +14,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         
-        let vc = SelectTGViewController()
-        let nav = UINavigationController(rootViewController: vc)
+        if UserDefaults.standard.bool(forKey: "first_Reset") {
+            let vc = MainViewController()
+            let id = UserDefaults.standard.integer(forKey: "lastTgID")
+            vc.tamagotchi = User.user.tamagotchiList[id]
+            
+            let nav = UINavigationController(rootViewController: vc)
+            window?.rootViewController = nav
+            
+        } else {
+            let vc = SelectTGViewController()
+            let nav = UINavigationController(rootViewController: vc)
+            window?.rootViewController = nav
+        }
         
-        window?.rootViewController = nav // storyboard의 entry point와 같음
         window?.makeKeyAndVisible()
     }
 

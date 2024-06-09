@@ -10,6 +10,7 @@ import SnapKit
 
 class SelectTGDetailViewController: UIViewController {
     var tamagotchi: Tamagotchi?
+    var viewType: ViewType?
     
     lazy var tamagotchiImgView: UIImageView = {
         let imgView = UIImageView()
@@ -29,7 +30,7 @@ class SelectTGDetailViewController: UIViewController {
     }()
     
     lazy var tgNameLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "준비중입니다"
         label.font = .systemFont(ofSize: 15, weight: .semibold)
         label.textColor = UIColor.mainColor
@@ -78,11 +79,9 @@ class SelectTGDetailViewController: UIViewController {
         return button
     }()
     
-    var user: User?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .white
         configureHierarchy()
         configureLayout()
@@ -158,15 +157,18 @@ class SelectTGDetailViewController: UIViewController {
     }
     
     @objc func ChooseButtonClicked() {
-        if let presentingViewController = self.presentingViewController as? UINavigationController  {
+        if let presentingViewController = self.presentingViewController as? UINavigationController {
             self.dismiss(animated: true) {
                 let vc = MainViewController()
-                if let t = self.tamagotchi, let user = self.user {
-                    vc.tamagotchi = t
-                    vc.user = user
+                if let selectTG = self.tamagotchi {
+                    print("selectTG:", selectTG)
+                    vc.tamagotchi = selectTG
+                    UserDefaults.standard.set(selectTG.id, forKey: "lastTgID")
                 }
-                presentingViewController.pushViewController(vc, animated: true)
+                UserDefaults.standard.set("\(true)", forKey: "first_Reset")
+                UserDefaults.standard.set(User.userName, forKey: "userName")
                 
+                presentingViewController.pushViewController(vc, animated: true)
             }
         }
     }

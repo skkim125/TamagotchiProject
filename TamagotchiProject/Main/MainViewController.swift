@@ -95,6 +95,7 @@ class MainViewController: UIViewController {
         button.layer.borderWidth = 1.5
         button.layer.cornerRadius = 8
         button.backgroundColor = .white
+        button.addTarget(self, action: #selector(raiseRice), for: .touchUpInside)
         
         return button
     }()
@@ -133,12 +134,12 @@ class MainViewController: UIViewController {
         button.layer.borderWidth = 1.5
         button.layer.cornerRadius = 8
         button.backgroundColor = .white
+        button.addTarget(self, action: #selector(raiseWater), for: .touchUpInside)
         
         return button
     }()
     
     var tamagotchi: Tamagotchi?
-    var user: User?
     var viewType: ViewType = .main
     
     override func viewDidLoad() {
@@ -201,7 +202,7 @@ class MainViewController: UIViewController {
         tgInfoLabel.snp.makeConstraints { make in
             make.centerX.equalTo(tgNameBackView)
             make.top.equalTo(tgNameBackView.snp.bottom).offset(12)
-            make.width.equalTo(200)
+            make.horizontalEdges.lessThanOrEqualTo(view.safeAreaLayoutGuide).inset(70)
             make.height.equalTo(36)
         }
         
@@ -241,29 +242,116 @@ class MainViewController: UIViewController {
     }
 
     func configureNavigationView() {
-        let right = UIBarButtonItem(image: UIImage(systemName: "person.circle"), style: .plain, target: self, action: #selector(moveUserVIew))
+        let right = UIBarButtonItem(image: UIImage(systemName: "person.circle"), style: .plain, target: self, action: #selector(goSettingVc))
         navigationItem.rightBarButtonItem = right
         navigationItem.hidesBackButton = true
-        navigationItem.title = viewType.navTitle
+        if let userName = UserDefaults.standard.string(forKey: "userName") {
+            navigationItem.title = "\(userName)님의 다마고치"
+        } else {
+            navigationItem.title = viewType.navTitle
+        }
         navigationController?.navigationBar.tintColor = UIColor.mainColor
         UINavigationBarAppearance().shadowColor = .lightGray
         navigationController?.navigationBar.scrollEdgeAppearance = UINavigationBarAppearance()
     }
     
     func setTGMainView() {
-        if let user = self.user, let t = self.tamagotchi {
-            navigationItem.title = "\(user.userName)님의 다마고치"
-            tgImageView.image = UIImage(named: t.image)
+        if let t = self.tamagotchi {
+            let rice = UserDefaults.standard.integer(forKey: "\(t.id) 밥알")
+            UserDefaults.standard.set(rice, forKey: "\(t.id) 밥알")
+            
+            let water = UserDefaults.standard.integer(forKey: "\(t.id) 물")
+            UserDefaults.standard.set(water, forKey: "\(t.id) 물")
+            
+            let level = Tamagotchi.setLevel(rice: rice, water: water)
             tgNameLabel.text = t.name
-            tgInfoLabel.text = "Lv.\(t.level) | 밥알 \(t.rice)개 | 물방울 \(t.water)개"
+            tgInfoLabel.text = "Lv.\(level) | 밥알 \(rice)개 | 물방울 \(water)개"
+            tgImageView.image = UIImage(named: Tamagotchi.setImage(id: t.id, level: level))
         }
     }
     
-    @objc func moveUserVIew() {
+    @objc func goSettingVc() {
         let vc = SettingViewController()
+        
         viewType = .setting
-        vc.user = self.user
         vc.navigationItem.title = viewType.navTitle
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func raiseRice() {
+        print("\(#function) 누름")
+        
+        if let t = self.tamagotchi, let riceStr = raiseRiceTF.text {
+            let beforeRice = UserDefaults.standard.integer(forKey: "\(t.id) 밥알")
+            print("더하기전 밥알", beforeRice)
+            if riceStr.isEmpty {
+               let afterRice = beforeRice + 1
+                UserDefaults.standard.set(afterRice, forKey: "\(t.id) 밥알")
+            } else {
+                if let rice = Int(riceStr) {
+                    if rice > 0 {
+                        let afterRice = beforeRice + rice
+                        UserDefaults.standard.set(afterRice, forKey: "\(t.id) 밥알")
+                    } else {
+                        raiseRiceTF.text = nil
+                        raiseRiceTF.placeholder = "0 이상 입력 가능"
+                    }
+                }
+            }
+            print("더한 후 밥알", UserDefaults.standard.integer(forKey: "\(t.id) 밥알"))
+        }
+        
+        setTGMainView()
+        raiseRiceTF.text = nil
+    }
+    
+    @objc func raiseWater() {
+        print("\(#function) 누름")
+        
+        if let t = self.tamagotchi, let waterStr = raiseWaterTF.text {
+            let beforeWater = UserDefaults.standard.integer(forKey: "\(t.id) 물")
+            print("더하기전 물", beforeWater)
+            if waterStr.isEmpty {
+               let afterWater = beforeWater + 1
+                User.user.tamagotchiList[t.id].water = afterWater
+                UserDefaults.standard.set(afterWater, forKey: "\(t.id) 물")
+            } else {
+                if let water = Int(waterStr) {
+                    if water > 0 {
+                        let afterWater = beforeWater + water
+                        User.user.tamagotchiList[t.id].water = afterWater
+                        UserDefaults.standard.set(afterWater, forKey: "\(t.id) 물")
+                    } else {
+                        raiseWaterTF.text = nil
+                        raiseWaterTF.placeholder = "0 이상 입력 가능"
+                    }
+                }
+            }
+            print("더한 후 물", UserDefaults.standard.integer(forKey: "\(t.id) 물"))
+        }
+
+        setTGMainView()
+        raiseWaterTF.text = nil
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let userName = UserDefaults.standard.string(forKey: "userName") {
+            navigationItem.title = "\(userName)님의 다마고치"
+        }
+            
+    }
+}
+
+extension MainViewController: UITextFieldDelegate {
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let text = textField.text {
+            guard Int(text) == nil else {
+                textField.placeholder = "숫자만 입력해주세요"
+                return
+            }
+        }
     }
 }

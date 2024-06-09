@@ -36,6 +36,7 @@ class ChangeNicknameViewController: UIViewController {
         configureHierarchy()
         configureLayout()
         setNavigationView()
+        setTFPlaceholder()
     }
     
     func configureHierarchy() {
@@ -63,7 +64,19 @@ class ChangeNicknameViewController: UIViewController {
         navigationItem.rightBarButtonItem = save
     }
     
+    func setTFPlaceholder() {
+        if let userName = UserDefaults.standard.string(forKey: "userName") {
+            nicknameTF.placeholder = userName
+        }
+    }
+    
     @objc func saveButtonClicked() {
-        navigationController?.popViewController(animated: true)
+        
+        if let text = self.nicknameTF.text, !text.isEmpty {
+            UserDefaults.standard.set(text, forKey: "userName")
+            User.userName = text
+        }
+        
+        self.navigationController?.popViewController(animated: true)
     }
 }

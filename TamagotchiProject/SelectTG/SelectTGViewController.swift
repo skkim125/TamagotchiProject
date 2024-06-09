@@ -26,7 +26,6 @@ class SelectTGViewController: UIViewController {
         return cv
     }()
     
-    var user: User = User()
     var tamagotchi: Tamagotchi?
     var viewType: ViewType = .selectTG
     
@@ -61,11 +60,12 @@ extension SelectTGViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SelectTGCollectionViewCell.id, for: indexPath) as! SelectTGCollectionViewCell
+        let list = User.user.tamagotchiList
         
-        for i in 0...user.tamagotchiList.count-1 {
+        for i in 0...list.count-1 {
             if i == indexPath.row {
-                cell.tamagotchi = user.tamagotchiList[i]
-                cell.setLabelText(data: user.tamagotchiList[i])
+                cell.tamagotchi = list[i]
+                cell.setLabelText(data: list[i])
             } else {
                 cell.isSelected = false
             }
@@ -74,13 +74,12 @@ extension SelectTGViewController: UICollectionViewDelegate, UICollectionViewData
         return cell
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! SelectTGCollectionViewCell
         let vc = SelectTGDetailViewController()
         guard let t = cell.tamagotchi else { return }
+        vc.viewType = self.viewType
         vc.tamagotchi = t
-        vc.user = self.user
         vc.setSelectTGView()
         present(vc, animated: true)
     }

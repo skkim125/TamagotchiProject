@@ -8,51 +8,62 @@
 import Foundation
 
 struct User {
-    var userName: String = "대장"
-    var resetBool: Bool = false
-    var tamagotchiList: [Tamagotchi] = [Tamagotchi(id: 1, name: "풀 다마고치", rice: 0, water: 0), Tamagotchi(id: 2, name: "태양 다마고치", rice: 0, water: 0), Tamagotchi(id: 3, name: "별 다마고치", rice: 0, water: 0)]
+    static var user = User()
+    static var userName: String = "대장"
+    var tamagotchiList: [Tamagotchi] = [Tamagotchi(id: 0, rice: 0, water: 0), Tamagotchi(id: 1, rice: 0, water: 0), Tamagotchi(id: 2, rice: 0, water: 0)]
 }
 
 struct Tamagotchi {
     let id: Int
-    let name: String
+    var name: String {
+        switch self.id {
+        case 0:
+            "풀 다마고치"
+        case 1:
+            "태양 다마고치"
+        case 2:
+            "별 다마고치"
+        default:
+            "준비중입니다"
+        }
+    }
     var rice: Int
     var water: Int
     
     var mainImage: String {
         switch self.id {
-        case 1:
+        case 0:
             "1-6"
-        case 2:
+        case 1:
             "2-6"
-        case 3:
+        case 2:
             "3-6"
         default:
             ""
         }
     }
     
-    var level: Int {
-        let levelCount = Int(self.rice / 5) + Int(self.water / 2)
+    static func setLevel(rice: Int, water: Int) -> Int {
+        let levelCount = Int(rice / 5) + Int(water / 2)
         
         switch levelCount {
         case 0..<10:
             return 1
         case 10..<20:
             return 1
-        case 21..<30:
+        case 20..<30:
             return 2
-        case 21..<40:
+        case 30..<40:
             return 3
-        case 21..<50:
+        case 40..<50:
             return 4
-        case 21..<60:
+        case 50..<60:
             return 5
-        case 21..<70:
+        case 60..<70:
             return 6
-        case 21..<80:
+        case 70..<80:
             return 7
-        case 21..<90:
+        case 80..<90:
             return 8
         case 90..<100:
             return 9
@@ -63,39 +74,28 @@ struct Tamagotchi {
         }
     }
     
-    var image: String {
-        switch self.level {
+    static func setImage(id: Int, level: Int) -> String {
+        switch level {
         case 1:
-            "\(self.id)-1"
+            "\(id+1)-1"
         case 2:
-            "\(self.id)-2"
+            "\(id+1)-2"
         case 3:
-            "\(self.id)-3"
+            "\(id+1)-3"
         case 4:
-            "\(self.id)-4"
+            "\(id+1)-4"
         case 5:
-            "\(self.id)-5"
+            "\(id+1)-5"
         case 6:
-            "\(self.id)-6"
+            "\(id+1)-6"
         case 7:
-            "\(self.id)-7"
+            "\(id+1)-7"
         case 8:
-            "\(self.id)-8"
+            "\(id+1)-8"
         case 9:
-            "\(self.id)-9"
+            "\(id+1)-9"
         default:
-            "\(self.id)-9"
+            "\(id+1)-9"
         }
     }
-    
-//    mutating func levelUP() {
-//        let level = Int(self.rice / 5) + Int(self.water / 2)
-//        if level < 20 {
-//            self.level = 1
-//        } else if level > 100 {
-//            self.level = 10
-//        } else {
-//            self.level = Int(self.rice / 5) + Int(self.water / 2)
-//        }
-//    }
 }
