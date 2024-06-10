@@ -29,6 +29,8 @@ class ChangeNicknameViewController: UIViewController {
         return view
     }()
     
+    let udm = UserDefaultsManager.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,9 +67,7 @@ class ChangeNicknameViewController: UIViewController {
     }
     
     func configureTF() {
-        if let userName = UserDefaults.standard.string(forKey: "userName") {
-            nicknameTF.placeholder = userName
-        }
+        nicknameTF.placeholder = udm.loadUserName()
     }
     
     func tapGesture() {
@@ -82,12 +82,12 @@ class ChangeNicknameViewController: UIViewController {
     @objc func saveButtonClicked() {
         
         if let text = self.nicknameTF.text, !text.isEmpty {
-            UserDefaults.standard.set(text, forKey: "userName")
+            udm.saveUserName(userName: text)
             User.userName = text
             
         } else {
             if let placeholder = nicknameTF.placeholder {
-                UserDefaults.standard.set(placeholder, forKey: "userName")
+                udm.saveUserName(userName: placeholder)
             }
         }
         

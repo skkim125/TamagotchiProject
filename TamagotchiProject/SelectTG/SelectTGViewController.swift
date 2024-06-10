@@ -28,12 +28,13 @@ class SelectTGViewController: UIViewController {
     
     var tamagotchi: Tamagotchi?
     var viewType: ViewType = .selectTG
+    let uDM = UserDefaultsManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        UserDefaults.standard.set(User.userName, forKey: "userName")
+        uDM.saveUserName(userName: User.userName)
         configureHierarchy()
         configureLayout()
         configureNavigationView()

@@ -25,6 +25,7 @@
 		0445CC212C12F7AD00CF0BED /* SelectTGDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445CC202C12F7AD00CF0BED /* SelectTGDetailViewController.swift */; };
 		0445CC232C145CA600CF0BED /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445CC222C145CA600CF0BED /* SettingTableViewCell.swift */; };
 		0445CC252C14891E00CF0BED /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445CC242C14891E00CF0BED /* Color+Extension.swift */; };
+		046467542C17397F00FCCFF0 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046467532C17397F00FCCFF0 /* UserDefaultsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		0445CC202C12F7AD00CF0BED /* SelectTGDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTGDetailViewController.swift; sourceTree = "<group>"; };
 		0445CC222C145CA600CF0BED /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		0445CC242C14891E00CF0BED /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		046467532C17397F00FCCFF0 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 				0445CC1E2C12E80F00CF0BED /* Tamagotchi.swift */,
 				0404CC8C2C12B77C00F9CF55 /* Enum.swift */,
 				0404CC8E2C12BC0200F9CF55 /* IdentifierProtocol.swift */,
+				046467532C17397F00FCCFF0 /* UserDefaultsManager.swift */,
 				0445CC242C14891E00CF0BED /* Color+Extension.swift */,
 			);
 			path = TamagotchiProject;
@@ -222,6 +225,7 @@
 				0404CC632C12B32B00F9CF55 /* SceneDelegate.swift in Sources */,
 				0445CC212C12F7AD00CF0BED /* SelectTGDetailViewController.swift in Sources */,
 				0404CC772C12B52400F9CF55 /* MainViewController.swift in Sources */,
+				046467542C17397F00FCCFF0 /* UserDefaultsManager.swift in Sources */,
 				0404CC8F2C12BC0200F9CF55 /* IdentifierProtocol.swift in Sources */,
 				0404CC792C12B53100F9CF55 /* SettingViewController.swift in Sources */,
 				0445CC252C14891E00CF0BED /* Color+Extension.swift in Sources */,

@@ -9,14 +9,15 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
-
+    let uDM = UserDefaultsManager.shared
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         
-        if UserDefaults.standard.bool(forKey: "first_Reset") {
+        if uDM.loadFirst_Reset() {
             let vc = MainViewController()
-            let id = UserDefaults.standard.integer(forKey: "lastTgID")
+            let id = uDM.loadLastTg()
             vc.tamagotchi = User.user.tamagotchiList[id]
             
             let nav = UINavigationController(rootViewController: vc)

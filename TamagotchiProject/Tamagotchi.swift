@@ -33,11 +33,11 @@ struct Tamagotchi {
     var mainImage: String {
         switch self.id {
         case 0:
-            "1-6"
+            "\(self.id+1)-6"
         case 1:
-            "2-6"
+            "\(self.id+1)-6"
         case 2:
-            "3-6"
+            "\(self.id+1)-6"
         default:
             ""
         }

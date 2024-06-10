@@ -79,6 +79,8 @@ class SelectTGDetailViewController: UIViewController {
         return button
     }()
     
+    let udm = UserDefaultsManager.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -162,9 +164,9 @@ class SelectTGDetailViewController: UIViewController {
                 let vc = MainViewController()
                 if let selectTG = self.tamagotchi {
                     vc.tamagotchi = selectTG
-                    UserDefaults.standard.set(selectTG.id, forKey: "lastTgID")
+                    self.udm.saveLastTg(id: selectTG.id)
                 }
-                UserDefaults.standard.set("\(true)", forKey: "first_Reset")
+                self.udm.saveFirst_Reset(true)
                 
                 presentingViewController.pushViewController(vc, animated: true)
             }

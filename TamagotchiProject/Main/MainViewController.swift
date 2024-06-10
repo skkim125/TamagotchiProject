@@ -145,6 +145,7 @@ class MainViewController: UIViewController {
     
     var tamagotchi: Tamagotchi?
     var viewType: ViewType = .main
+    let uDM = UserDefaultsManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -247,11 +248,7 @@ class MainViewController: UIViewController {
         let right = UIBarButtonItem(image: UIImage(systemName: "person.circle"), style: .plain, target: self, action: #selector(goSettingVc))
         navigationItem.rightBarButtonItem = right
         navigationItem.hidesBackButton = true
-        if let userName = UserDefaults.standard.string(forKey: "userName") {
-            navigationItem.title = "\(userName)님의 다마고치"
-        } else {
-            navigationItem.title = viewType.navTitle
-        }
+        navigationItem.title = "\(uDM.loadUserName())님의 다마고치"
         navigationController?.navigationBar.tintColor = UIColor.mainColor
         UINavigationBarAppearance().shadowColor = .lightGray
         navigationController?.navigationBar.scrollEdgeAppearance = UINavigationBarAppearance()
@@ -259,8 +256,8 @@ class MainViewController: UIViewController {
     
     func configureMainVIewUI() {
         if let t = self.tamagotchi {
-            let rice = UserDefaults.standard.integer(forKey: "\(t.id) 밥알")
-            let water = UserDefaults.standard.integer(forKey: "\(t.id) 물")
+            let rice = uDM.loadTgRice(tgID: t.id)
+            let water = uDM.loadTgWater(tgID: t.id)
             let level = Tamagotchi.setLevel(rice: rice, water: water)
             
             tgNameLabel.text = t.name
@@ -280,15 +277,15 @@ class MainViewController: UIViewController {
     @objc func raiseRice() {
         
         if let t = self.tamagotchi, let riceStr = raiseRiceTF.text {
-            let beforeRice = UserDefaults.standard.integer(forKey: "\(t.id) 밥알")
+            let beforeRice = uDM.loadTgRice(tgID: t.id)
             if riceStr.isEmpty {
                let afterRice = beforeRice + 1
-                UserDefaults.standard.set(afterRice, forKey: "\(t.id) 밥알")
+                uDM.saveTgRice(tgID: t.id, rice: afterRice)
             } else {
                 if let rice = Int(riceStr) {
                     if rice > 0 {
                         let afterRice = beforeRice + rice
-                        UserDefaults.standard.set(afterRice, forKey: "\(t.id) 밥알")
+                        uDM.saveTgRice(tgID: t.id, rice: afterRice)
                     } else {
                         raiseRiceTF.text = nil
                         raiseRiceTF.placeholder = "0 이상 입력 가능"
@@ -307,15 +304,16 @@ class MainViewController: UIViewController {
     @objc func raiseWater() {
         
         if let t = self.tamagotchi, let waterStr = raiseWaterTF.text {
-            let beforeWater = UserDefaults.standard.integer(forKey: "\(t.id) 물")
+            
+            let beforeWater = uDM.loadTgWater(tgID: t.id)
             if waterStr.isEmpty {
                let afterWater = beforeWater + 1
-                UserDefaults.standard.set(afterWater, forKey: "\(t.id) 물")
+                uDM.saveTgWater(tgID: t.id, water: afterWater)
             } else {
                 if let water = Int(waterStr) {
                     if water > 0 {
                         let afterWater = beforeWater + water
-                        UserDefaults.standard.set(afterWater, forKey: "\(t.id) 물")
+                        uDM.saveTgWater(tgID: t.id, water: afterWater)
                     } else {
                         raiseWaterTF.text = nil
                         raiseWaterTF.placeholder = "0 이상 입력 가능"
@@ -343,8 +341,6 @@ class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let userName = UserDefaults.standard.string(forKey: "userName") {
-            navigationItem.title = "\(userName)님의 다마고치"
-        }
+        navigationItem.title = "\(uDM.loadUserName())님의 다마고치"
     }
 }

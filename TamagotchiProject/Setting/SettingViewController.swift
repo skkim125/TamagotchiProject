@@ -10,6 +10,7 @@ import SnapKit
 
 class SettingViewController: UIViewController {
     let settings: [SettingType] = [.changNicname,.changeTG,.reset]
+    let udm = UserDefaultsManager.shared
     var viewType: ViewType = .setting
     var userName: String?
     
@@ -37,7 +38,7 @@ class SettingViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        userName = UserDefaults.standard.string(forKey: "userName")
+        userName = udm.loadUserName()
         tableView.reloadData()
     }
     
@@ -98,26 +99,10 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension SettingViewController {
-    
-    func removeUDAll() {
-        var list = User.user.tamagotchiList
-        
-        for i in 0...list.count-1 {
-            list[i].rice = 0
-            list[i].water = 0
-            UserDefaults.standard.removeObject(forKey: "\(list[i].id) 밥알")
-            UserDefaults.standard.removeObject(forKey: "\(list[i].id) 물")
-            UserDefaults.standard.removeObject(forKey: "first_Reset")
-            UserDefaults.standard.removeObject(forKey: "lastTgID")
-            UserDefaults.standard.removeObject(forKey: "userName")
-        }
-    }
-    
     func changeNicknameUI() {
         let vc = ChangeNicknameViewController()
-        if let userName = UserDefaults.standard.string(forKey: "userName") {
-            vc.nicknameTF.placeholder = userName
-        }
+        vc.nicknameTF.placeholder = udm.loadUserName()
+        
         viewType = .changeNicname
         vc.navigationItem.title = viewType.navTitle
         navigationController?.pushViewController(vc, animated: true)
@@ -134,8 +119,8 @@ extension SettingViewController {
         let alert = UIAlertController(title: "데이터 초기화", message: "정말로 초기화하시겠습니까?", preferredStyle: .alert)
         let cancel = UIAlertAction(title: "아니요", style: .cancel)
         let reset = UIAlertAction(title: "네", style: .destructive) { _ in
-            UserDefaults.standard.set(false, forKey: "first_Reset")
-            self.removeUDAll()
+            
+            self.udm.reset()
             let vc = SelectTGViewController()
             vc.navigationItem.hidesBackButton = true
             self.navigationController?.pushViewController(vc, animated: true)
