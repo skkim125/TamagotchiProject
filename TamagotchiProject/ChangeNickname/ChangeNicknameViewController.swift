@@ -37,6 +37,7 @@ class ChangeNicknameViewController: UIViewController {
         configureLayout()
         configureNavigationView()
         configureTF()
+        tapGesture()
     }
     
     func configureHierarchy() {
@@ -69,13 +70,28 @@ class ChangeNicknameViewController: UIViewController {
         }
     }
     
+    func tapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(keyboardDismiss))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func keyboardDismiss() {
+        view.endEditing(true)
+    }
+    
     @objc func saveButtonClicked() {
         
         if let text = self.nicknameTF.text, !text.isEmpty {
             UserDefaults.standard.set(text, forKey: "userName")
             User.userName = text
+            
+        } else {
+            if let placeholder = nicknameTF.placeholder {
+                UserDefaults.standard.set(placeholder, forKey: "userName")
+            }
         }
         
+        view.endEditing(true)
         self.navigationController?.popViewController(animated: true)
     }
 }

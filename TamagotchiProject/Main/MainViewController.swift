@@ -11,6 +11,7 @@ class MainViewController: UIViewController {
     lazy var bubbleImgView: UIImageView = {
         let imgView = UIImageView()
         imgView.image = UIImage(named: "bubble")
+        imgView.contentMode = .scaleToFill
         
         return imgView
     }()
@@ -18,6 +19,7 @@ class MainViewController: UIViewController {
     lazy var bubbleLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.mainColor
+        label.text = "비비디바비디부 비비디바비디부 비비디바비디부 비비디바비디부 비비디바비디부"
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 15, weight: .semibold)
         label.numberOfLines = 0
@@ -72,6 +74,7 @@ class MainViewController: UIViewController {
        let tf = UITextField()
         tf.textAlignment = .center
         tf.placeholder = "밥 주세요"
+        tf.keyboardType = .numberPad
         
         tf.borderStyle = .none
         
@@ -111,6 +114,7 @@ class MainViewController: UIViewController {
        let tf = UITextField()
         tf.textAlignment = .center
         tf.placeholder = "물 주세요"
+        tf.keyboardType = .numberPad
         
         tf.borderStyle = .none
         
@@ -150,6 +154,7 @@ class MainViewController: UIViewController {
         configureLayout()
         configureNavigationView()
         configureMainVIewUI()
+        tapGesture()
     }
     
     func configureHierarchy() {
@@ -168,22 +173,19 @@ class MainViewController: UIViewController {
     func configureLayout() {
         
         bubbleImgView.snp.makeConstraints { make in
-            make.centerX.equalTo(view)
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(32)
+            make.top.lessThanOrEqualTo(view.safeAreaLayoutGuide).offset(40)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(80)
+            make.height.equalTo(160)
         }
         
         bubbleLabel.snp.makeConstraints { make in
-            make.top.equalTo(bubbleImgView.snp.top).offset(12)
-            make.leading.equalTo(bubbleImgView.snp.leading).offset(20)
-            make.trailing.equalTo(bubbleImgView.snp.trailing).inset(20)
-            make.bottom.equalTo(bubbleImgView.snp.bottom).inset(20)
+            make.edges.equalTo(bubbleImgView)
         }
         
         tgImageView.snp.makeConstraints { make in
             make.top.equalTo(bubbleImgView.snp.bottom).offset(4)
-            make.centerX.equalTo(view)
-            make.width.equalTo(280)
+            make.horizontalEdges.equalTo(bubbleImgView)
+            make.height.equalTo(160)
         }
         
         tgNameBackView.snp.makeConstraints { make in
@@ -225,6 +227,7 @@ class MainViewController: UIViewController {
         waterStackView.snp.makeConstraints { make in
             make.top.equalTo(riceStackView.snp.bottom).offset(20)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(70)
+            make.bottom.equalTo(view.keyboardLayoutGuide.snp.top) // keyboardLayoutGuide에 맞춰 레이아웃이 설정됨
             make.height.equalTo(36)
         }
         
@@ -268,7 +271,7 @@ class MainViewController: UIViewController {
     
     @objc func goSettingVc() {
         let vc = SettingViewController()
-        
+        view.endEditing(true)
         viewType = .setting
         vc.navigationItem.title = viewType.navTitle
         navigationController?.pushViewController(vc, animated: true)
@@ -290,6 +293,9 @@ class MainViewController: UIViewController {
                         raiseRiceTF.text = nil
                         raiseRiceTF.placeholder = "0 이상 입력 가능"
                     }
+                } else {
+                    raiseRiceTF.text = nil
+                    raiseRiceTF.placeholder = "정수만 입력 가능"
                 }
             }
         }
@@ -314,6 +320,9 @@ class MainViewController: UIViewController {
                         raiseWaterTF.text = nil
                         raiseWaterTF.placeholder = "0 이상 입력 가능"
                     }
+                } else {
+                    raiseWaterTF.text = nil
+                    raiseWaterTF.placeholder = "정수만 입력 가능"
                 }
             }
         }
@@ -322,24 +331,20 @@ class MainViewController: UIViewController {
         raiseWaterTF.text = nil
     }
     
+    func tapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(keyboardDismiss))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func keyboardDismiss() {
+        view.endEditing(true)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if let userName = UserDefaults.standard.string(forKey: "userName") {
             navigationItem.title = "\(userName)님의 다마고치"
-        }
-            
-    }
-}
-
-extension MainViewController: UITextFieldDelegate {
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if let text = textField.text {
-            guard Int(text) == nil else {
-                textField.placeholder = "숫자만 입력해주세요"
-                return
-            }
         }
     }
 }
