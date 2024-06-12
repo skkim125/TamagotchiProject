@@ -110,7 +110,7 @@ class SelectTGDetailViewController: UIViewController {
             make.top.equalTo(tamagotchiImgView.snp.bottom).offset(12)
             make.centerX.equalTo(tamagotchiImgView)
             make.width.equalTo(180)
-            make.height.equalTo(36)
+            make.height.equalTo(44)
         }
         
         tgNameLabel.snp.makeConstraints { make in

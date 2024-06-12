@@ -11,13 +11,9 @@ import SnapKit
 class SelectTGViewController: UIViewController {
     
     lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        let width = (UIScreen.main.bounds.width / 3)-8
-        layout.itemSize = CGSize(width: width, height: width)
         
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
         cv.register(SelectTGCollectionViewCell.self, forCellWithReuseIdentifier: SelectTGCollectionViewCell.id)
-        cv.contentInset = .init(top: 1, left: 1, bottom: 1, right: 1)
         cv.backgroundColor = .white
         cv.delegate = self
         cv.dataSource = self
@@ -25,6 +21,21 @@ class SelectTGViewController: UIViewController {
         
         return cv
     }()
+    
+    
+    func collectionViewLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewFlowLayout()
+        let sectionSpacing: CGFloat = 2
+        let cellSpacing: CGFloat = 2
+        let width = UIScreen.main.bounds.width - (sectionSpacing * 2 + cellSpacing * 2)
+        
+        layout.itemSize = CGSize(width: width/3, height: width/3 * 1.3)
+        layout.minimumLineSpacing = 2
+        layout.minimumInteritemSpacing = 2
+        layout.sectionInset = .init(top: 2, left: 2, bottom: 2, right: 2)
+        
+        return layout
+    }
     
     var tamagotchi: Tamagotchi?
     var viewType: ViewType = .selectTG

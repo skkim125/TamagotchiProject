@@ -204,7 +204,7 @@ class MainViewController: UIViewController {
         tgInfoLabel.snp.makeConstraints { make in
             make.centerX.equalTo(tgNameBackView)
             make.top.equalTo(tgNameBackView.snp.bottom).offset(12)
-            make.horizontalEdges.lessThanOrEqualTo(view.safeAreaLayoutGuide).inset(70)
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(70)
             make.height.equalTo(36)
         }
         

@@ -56,13 +56,14 @@ class SelectTGCollectionViewCell: UICollectionViewCell {
     func configureLayout() {
         imageView.snp.makeConstraints { make in
             make.centerX.equalTo(contentView)
-            make.size.equalTo(90)
+            make.horizontalEdges.equalTo(contentView.safeAreaLayoutGuide).inset(12)
+            make.height.equalTo(imageView.snp.width)
         }
         
         tgNameBackView.snp.makeConstraints { make in
             make.top.equalTo(imageView.snp.bottom).offset(4)
-            make.bottom.equalTo(contentView.safeAreaLayoutGuide)
-            make.height.equalTo(24)
+            make.bottom.equalTo(contentView.safeAreaLayoutGuide).inset(8)
+            make.height.equalTo(30)
             make.horizontalEdges.equalTo(contentView.safeAreaLayoutGuide).inset(12)
         }
         
