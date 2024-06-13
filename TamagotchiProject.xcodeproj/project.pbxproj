@@ -26,6 +26,7 @@
 		0445CC232C145CA600CF0BED /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445CC222C145CA600CF0BED /* SettingTableViewCell.swift */; };
 		0445CC252C14891E00CF0BED /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445CC242C14891E00CF0BED /* Color+Extension.swift */; };
 		046467542C17397F00FCCFF0 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046467532C17397F00FCCFF0 /* UserDefaultsManager.swift */; };
+		04DEC25B2C1A74D100AAD523 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DEC25A2C1A74D100AAD523 /* UIViewController+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		0445CC222C145CA600CF0BED /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		0445CC242C14891E00CF0BED /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		046467532C17397F00FCCFF0 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		04DEC25A2C1A74D100AAD523 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 				0404CC6B2C12B32C00F9CF55 /* LaunchScreen.storyboard */,
 				0404CC6E2C12B32C00F9CF55 /* Info.plist */,
 				0445CC1E2C12E80F00CF0BED /* Tamagotchi.swift */,
+				04DEC25A2C1A74D100AAD523 /* UIViewController+Extension.swift */,
 				0404CC8C2C12B77C00F9CF55 /* Enum.swift */,
 				0404CC8E2C12BC0200F9CF55 /* IdentifierProtocol.swift */,
 				046467532C17397F00FCCFF0 /* UserDefaultsManager.swift */,
@@ -218,6 +221,7 @@
 				0404CC7B2C12B54200F9CF55 /* ChangeNicknameViewController.swift in Sources */,
 				0404CC612C12B32B00F9CF55 /* AppDelegate.swift in Sources */,
 				0445CC1F2C12E80F00CF0BED /* Tamagotchi.swift in Sources */,
+				04DEC25B2C1A74D100AAD523 /* UIViewController+Extension.swift in Sources */,
 				0404CC8D2C12B77C00F9CF55 /* Enum.swift in Sources */,
 				0445CC1D2C12E4FF00CF0BED /* SelectTGCollectionViewCell.swift in Sources */,
 				0404CC952C12E3DB00F9CF55 /* SelectTGViewController.swift in Sources */,

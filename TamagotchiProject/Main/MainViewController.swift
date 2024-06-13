@@ -283,13 +283,21 @@ class MainViewController: UIViewController {
                 uDM.saveTgRice(tgID: t.id, rice: afterRice)
             } else {
                 if let rice = Int(riceStr) {
-                    if rice > 0 {
-                        let afterRice = beforeRice + rice
-                        uDM.saveTgRice(tgID: t.id, rice: afterRice)
-                    } else {
+                    guard rice > 0 else {
                         raiseRiceTF.text = nil
                         raiseRiceTF.placeholder = "0 이상 입력 가능"
+                        
+                        return
                     }
+                    guard rice < 50 else {
+                        raiseRiceTF.text = nil
+                        raiseRiceTF.placeholder = "50 미만 입력 가능"
+                        
+                        return
+                    }
+                    
+                    let afterRice = beforeRice + rice
+                    uDM.saveTgRice(tgID: t.id, rice: afterRice)
                 } else {
                     raiseRiceTF.text = nil
                     raiseRiceTF.placeholder = "정수만 입력 가능"
@@ -311,13 +319,22 @@ class MainViewController: UIViewController {
                 uDM.saveTgWater(tgID: t.id, water: afterWater)
             } else {
                 if let water = Int(waterStr) {
-                    if water > 0 {
-                        let afterWater = beforeWater + water
-                        uDM.saveTgWater(tgID: t.id, water: afterWater)
-                    } else {
+                    guard water > 0 else {
                         raiseWaterTF.text = nil
                         raiseWaterTF.placeholder = "0 이상 입력 가능"
+                        
+                        return
                     }
+                    guard water < 50 else {
+                        raiseWaterTF.text = nil
+                        raiseWaterTF.placeholder = "50 미만 입력 가능"
+                        
+                        return
+                    }
+                    
+                    let afterWater = beforeWater + water
+                    uDM.saveTgWater(tgID: t.id, water: afterWater)
+
                 } else {
                     raiseWaterTF.text = nil
                     raiseWaterTF.placeholder = "정수만 입력 가능"
@@ -327,15 +344,6 @@ class MainViewController: UIViewController {
 
         configureMainVIewUI()
         raiseWaterTF.text = nil
-    }
-    
-    func tapGesture() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(keyboardDismiss))
-        view.addGestureRecognizer(tapGesture)
-    }
-    
-    @objc func keyboardDismiss() {
-        view.endEditing(true)
     }
     
     override func viewWillAppear(_ animated: Bool) {

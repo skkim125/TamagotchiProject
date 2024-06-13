@@ -70,15 +70,6 @@ class ChangeNicknameViewController: UIViewController {
         nicknameTF.placeholder = udm.loadUserName()
     }
     
-    func tapGesture() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(keyboardDismiss))
-        view.addGestureRecognizer(tapGesture)
-    }
-    
-    @objc func keyboardDismiss() {
-        view.endEditing(true)
-    }
-    
     @objc func saveButtonClicked() {
         
         if let text = self.nicknameTF.text, !text.isEmpty {
