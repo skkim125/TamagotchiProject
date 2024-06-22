@@ -7,36 +7,46 @@
 
 import Foundation
 
-struct User {
-    static var user = User()
-    static var userName: String = "대장"
-    var tamagotchiList: [Tamagotchi] = [Tamagotchi(id: 0, rice: 0, water: 0), Tamagotchi(id: 1, rice: 0, water: 0), Tamagotchi(id: 2, rice: 0, water: 0)]
+class TamagotchiManager {
+    static let shared = TamagotchiManager()
+    let userDefaults = UserDefaults.standard
+    let udm = UserDefaultsManager.shared
+    var tamagotchiList = [Tamagotchi(id: 0), Tamagotchi(id: 1), Tamagotchi(id: 2)]
 }
 
 struct Tamagotchi {
+    let userDefaults = UserDefaults.standard
+    
     let id: Int
     var name: String {
-        switch self.id {
-        case 0:
-            "풀 다마고치"
+        switch self.id+1 {
         case 1:
-            "태양 다마고치"
+            "풀 다마고치"
         case 2:
+            "태양 다마고치"
+        case 3:
             "별 다마고치"
         default:
             "준비중입니다"
         }
     }
-    var rice: Int
-    var water: Int
+    var rice: Int {
+        get { userDefaults.integer(forKey: UserDefaultsManager.UserDefaultsKey.tgRiceKey(tgId: self.id)) }
+        set { userDefaults.setValue(newValue, forKey: UserDefaultsManager.UserDefaultsKey.tgRiceKey(tgId: self.id)) }
+    }
+    
+    var water: Int {
+        get { userDefaults.integer(forKey: UserDefaultsManager.UserDefaultsKey.tgWaterKey(tgId: self.id)) }
+        set { userDefaults.setValue(newValue, forKey: UserDefaultsManager.UserDefaultsKey.tgWaterKey(tgId: self.id)) }
+    }
     
     var mainImage: String {
-        switch self.id {
-        case 0:
-            "\(self.id+1)-6"
+        switch self.id+1 {
         case 1:
             "\(self.id+1)-6"
         case 2:
+            "\(self.id+1)-6"
+        case 3:
             "\(self.id+1)-6"
         default:
             ""

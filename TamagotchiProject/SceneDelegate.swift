@@ -10,15 +10,16 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     let uDM = UserDefaultsManager.shared
+    let tm = TamagotchiManager.shared
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         
-        if uDM.loadFirst_Reset() {
+        if uDM.firstReset {
             let vc = MainViewController()
-            let id = uDM.loadLastTg()
-            vc.tamagotchi = User.user.tamagotchiList[id]
+            let id = uDM.lastTg
+            vc.tamagotchi = tm.tamagotchiList[id]
             
             let nav = UINavigationController(rootViewController: vc)
             window?.rootViewController = nav

@@ -20,6 +20,7 @@
 		0404CC8D2C12B77C00F9CF55 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404CC8C2C12B77C00F9CF55 /* Enum.swift */; };
 		0404CC8F2C12BC0200F9CF55 /* IdentifierProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404CC8E2C12BC0200F9CF55 /* IdentifierProtocol.swift */; };
 		0404CC952C12E3DB00F9CF55 /* SelectTGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0404CC942C12E3DB00F9CF55 /* SelectTGViewController.swift */; };
+		04266F742C1AB30B007C8197 /* CustomViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04266F732C1AB30B007C8197 /* CustomViews.swift */; };
 		0445CC1D2C12E4FF00CF0BED /* SelectTGCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445CC1C2C12E4FF00CF0BED /* SelectTGCollectionViewCell.swift */; };
 		0445CC1F2C12E80F00CF0BED /* Tamagotchi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445CC1E2C12E80F00CF0BED /* Tamagotchi.swift */; };
 		0445CC212C12F7AD00CF0BED /* SelectTGDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0445CC202C12F7AD00CF0BED /* SelectTGDetailViewController.swift */; };
@@ -43,6 +44,7 @@
 		0404CC8C2C12B77C00F9CF55 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		0404CC8E2C12BC0200F9CF55 /* IdentifierProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifierProtocol.swift; sourceTree = "<group>"; };
 		0404CC942C12E3DB00F9CF55 /* SelectTGViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTGViewController.swift; sourceTree = "<group>"; };
+		04266F732C1AB30B007C8197 /* CustomViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViews.swift; sourceTree = "<group>"; };
 		0445CC1C2C12E4FF00CF0BED /* SelectTGCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTGCollectionViewCell.swift; sourceTree = "<group>"; };
 		0445CC1E2C12E80F00CF0BED /* Tamagotchi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tamagotchi.swift; sourceTree = "<group>"; };
 		0445CC202C12F7AD00CF0BED /* SelectTGDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTGDetailViewController.swift; sourceTree = "<group>"; };
@@ -91,14 +93,15 @@
 				0404CC892C12B6F400F9CF55 /* Main */,
 				0404CC8A2C12B6FE00F9CF55 /* Setting */,
 				0404CC8B2C12B70B00F9CF55 /* ChangeNickname */,
+				04266F752C1AB31B007C8197 /* Data */,
+				04266F732C1AB30B007C8197 /* CustomViews.swift */,
 				0404CC692C12B32C00F9CF55 /* Assets.xcassets */,
 				0404CC6B2C12B32C00F9CF55 /* LaunchScreen.storyboard */,
 				0404CC6E2C12B32C00F9CF55 /* Info.plist */,
-				0445CC1E2C12E80F00CF0BED /* Tamagotchi.swift */,
-				04DEC25A2C1A74D100AAD523 /* UIViewController+Extension.swift */,
 				0404CC8C2C12B77C00F9CF55 /* Enum.swift */,
 				0404CC8E2C12BC0200F9CF55 /* IdentifierProtocol.swift */,
 				046467532C17397F00FCCFF0 /* UserDefaultsManager.swift */,
+				04DEC25A2C1A74D100AAD523 /* UIViewController+Extension.swift */,
 				0445CC242C14891E00CF0BED /* Color+Extension.swift */,
 			);
 			path = TamagotchiProject;
@@ -137,6 +140,14 @@
 				0404CC7A2C12B54200F9CF55 /* ChangeNicknameViewController.swift */,
 			);
 			path = ChangeNickname;
+			sourceTree = "<group>";
+		};
+		04266F752C1AB31B007C8197 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				0445CC1E2C12E80F00CF0BED /* Tamagotchi.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +234,7 @@
 				0445CC1F2C12E80F00CF0BED /* Tamagotchi.swift in Sources */,
 				04DEC25B2C1A74D100AAD523 /* UIViewController+Extension.swift in Sources */,
 				0404CC8D2C12B77C00F9CF55 /* Enum.swift in Sources */,
+				04266F742C1AB30B007C8197 /* CustomViews.swift in Sources */,
 				0445CC1D2C12E4FF00CF0BED /* SelectTGCollectionViewCell.swift in Sources */,
 				0404CC952C12E3DB00F9CF55 /* SelectTGViewController.swift in Sources */,
 				0445CC232C145CA600CF0BED /* SettingTableViewCell.swift in Sources */,

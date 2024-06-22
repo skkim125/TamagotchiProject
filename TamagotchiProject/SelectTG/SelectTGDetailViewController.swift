@@ -162,13 +162,20 @@ class SelectTGDetailViewController: UIViewController {
         if let presentingViewController = self.presentingViewController as? UINavigationController {
             self.dismiss(animated: true) {
                 let vc = MainViewController()
+                let nav = UINavigationController(rootViewController: vc)
+                
+                let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+                let sceneDelegate = windowScene?.delegate as? SceneDelegate
+                
                 if let selectTG = self.tamagotchi {
                     vc.tamagotchi = selectTG
-                    self.udm.saveLastTg(id: selectTG.id)
+                    self.udm.lastTg = selectTG.id
                 }
-                self.udm.saveFirst_Reset(true)
                 
-                presentingViewController.pushViewController(vc, animated: true)
+                self.udm.firstReset = true
+                
+                sceneDelegate?.window?.rootViewController = nav
+                sceneDelegate?.window?.makeKeyAndVisible()
             }
         }
     }

@@ -40,12 +40,13 @@ class SelectTGViewController: UIViewController {
     var tamagotchi: Tamagotchi?
     var viewType: ViewType = .selectTG
     let uDM = UserDefaultsManager.shared
+    let tm = TamagotchiManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        uDM.saveUserName(userName: User.userName)
+        uDM.userName = "대장"
         configureHierarchy()
         configureLayout()
         configureNavigationView()
@@ -76,7 +77,7 @@ extension SelectTGViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SelectTGCollectionViewCell.id, for: indexPath) as! SelectTGCollectionViewCell
-        let list = User.user.tamagotchiList
+        let list = tm.tamagotchiList
         
         for i in 0...list.count-1 {
             if i == indexPath.row {

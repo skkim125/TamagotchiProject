@@ -38,7 +38,7 @@ class SettingViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        userName = udm.loadUserName()
+        userName = udm.userName
         tableView.reloadData()
     }
     
@@ -101,7 +101,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
 extension SettingViewController {
     func changeNicknameUI() {
         let vc = ChangeNicknameViewController()
-        vc.nicknameTF.placeholder = udm.loadUserName()
+        vc.nicknameTF.placeholder = udm.userName
         
         viewType = .changeNicname
         vc.navigationItem.title = viewType.navTitle
@@ -121,9 +121,15 @@ extension SettingViewController {
         let reset = UIAlertAction(title: "네", style: .destructive) { _ in
             
             self.udm.reset()
+            
+            let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+            let sceneDelegate = windowScene?.delegate as? SceneDelegate
+            
             let vc = SelectTGViewController()
-            vc.navigationItem.hidesBackButton = true
-            self.navigationController?.pushViewController(vc, animated: true)
+            let nav = UINavigationController(rootViewController: vc)
+            
+            sceneDelegate?.window?.rootViewController = nav
+            sceneDelegate?.window?.makeKeyAndVisible()
         }
         alert.addAction(cancel)
         alert.addAction(reset)

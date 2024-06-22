@@ -64,7 +64,7 @@ class MainViewController: UIViewController {
     }()
     
     lazy var riceStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [raiseRiceTF, raiseRiceButton])
+        let stackView = UIStackView(arrangedSubviews: [raiseRiceTF, riceButton])
         stackView.spacing = 12
         
         return stackView
@@ -88,23 +88,10 @@ class MainViewController: UIViewController {
         return view
     }()
     
-    lazy var raiseRiceButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("밥주기", for: .normal)
-        button.setTitleColor(UIColor.mainColor, for: .normal)
-        button.setImage(UIImage(systemName: "drop.circle"), for: .normal)
-        button.tintColor = UIColor.mainColor
-        button.layer.borderColor = UIColor.mainColor.cgColor
-        button.layer.borderWidth = 1.5
-        button.layer.cornerRadius = 8
-        button.backgroundColor = .white
-        button.addTarget(self, action: #selector(raiseRice), for: .touchUpInside)
-        
-        return button
-    }()
+    let riceButton = RaiseButton(title: Raise.rice.rawValue)
     
     lazy var waterStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [raiseWaterTF, raiseWaterButton])
+        let stackView = UIStackView(arrangedSubviews: [raiseWaterTF, waterButton])
         stackView.spacing = 12
         
         return stackView
@@ -128,24 +115,12 @@ class MainViewController: UIViewController {
         return view
     }()
     
-    lazy var raiseWaterButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setTitle("물주기", for: .normal)
-        button.setTitleColor(UIColor.mainColor, for: .normal)
-        button.setImage(UIImage(systemName: "leaf.circle"), for: .normal)
-        button.tintColor = UIColor.mainColor
-        button.layer.borderColor = UIColor.mainColor.cgColor
-        button.layer.borderWidth = 1.5
-        button.layer.cornerRadius = 8
-        button.backgroundColor = .white
-        button.addTarget(self, action: #selector(raiseWater), for: .touchUpInside)
-        
-        return button
-    }()
+    let waterButton = RaiseButton(title: Raise.water.rawValue)
     
     var tamagotchi: Tamagotchi?
     var viewType: ViewType = .main
     let uDM = UserDefaultsManager.shared
+    let tm = TamagotchiManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -248,16 +223,18 @@ class MainViewController: UIViewController {
         let right = UIBarButtonItem(image: UIImage(systemName: "person.circle"), style: .plain, target: self, action: #selector(goSettingVc))
         navigationItem.rightBarButtonItem = right
         navigationItem.hidesBackButton = true
-        navigationItem.title = "\(uDM.loadUserName())님의 다마고치"
+        navigationItem.title = "\(uDM.userName)님의 다마고치"
         navigationController?.navigationBar.tintColor = UIColor.mainColor
         UINavigationBarAppearance().shadowColor = .lightGray
         navigationController?.navigationBar.scrollEdgeAppearance = UINavigationBarAppearance()
     }
     
     func configureMainVIewUI() {
+        riceButton.addTarget(self, action: #selector(raiseRice), for: .touchUpInside)
+        waterButton.addTarget(self, action: #selector(raiseWater), for: .touchUpInside)
         if let t = self.tamagotchi {
-            let rice = uDM.loadTgRice(tgID: t.id)
-            let water = uDM.loadTgWater(tgID: t.id)
+            let rice = t.rice
+            let water = t.water
             let level = Tamagotchi.setLevel(rice: rice, water: water)
             
             tgNameLabel.text = t.name
@@ -276,33 +253,8 @@ class MainViewController: UIViewController {
     
     @objc func raiseRice() {
         
-        if let t = self.tamagotchi, let riceStr = raiseRiceTF.text {
-            let beforeRice = uDM.loadTgRice(tgID: t.id)
-            if riceStr.isEmpty {
-               let afterRice = beforeRice + 1
-                uDM.saveTgRice(tgID: t.id, rice: afterRice)
-            } else {
-                if let rice = Int(riceStr) {
-                    guard rice > 0 else {
-                        raiseRiceTF.text = nil
-                        raiseRiceTF.placeholder = "0 이상 입력 가능"
-                        
-                        return
-                    }
-                    guard rice < 50 else {
-                        raiseRiceTF.text = nil
-                        raiseRiceTF.placeholder = "50 미만 입력 가능"
-                        
-                        return
-                    }
-                    
-                    let afterRice = beforeRice + rice
-                    uDM.saveTgRice(tgID: t.id, rice: afterRice)
-                } else {
-                    raiseRiceTF.text = nil
-                    raiseRiceTF.placeholder = "정수만 입력 가능"
-                }
-            }
+        if let t = self.tamagotchi {
+            saveResult(tamagotchi: t, raiseThing: Raise.rice, textField: raiseRiceTF)
         }
         
         configureMainVIewUI()
@@ -311,35 +263,8 @@ class MainViewController: UIViewController {
     
     @objc func raiseWater() {
         
-        if let t = self.tamagotchi, let waterStr = raiseWaterTF.text {
-            
-            let beforeWater = uDM.loadTgWater(tgID: t.id)
-            if waterStr.isEmpty {
-               let afterWater = beforeWater + 1
-                uDM.saveTgWater(tgID: t.id, water: afterWater)
-            } else {
-                if let water = Int(waterStr) {
-                    guard water > 0 else {
-                        raiseWaterTF.text = nil
-                        raiseWaterTF.placeholder = "0 이상 입력 가능"
-                        
-                        return
-                    }
-                    guard water < 50 else {
-                        raiseWaterTF.text = nil
-                        raiseWaterTF.placeholder = "50 미만 입력 가능"
-                        
-                        return
-                    }
-                    
-                    let afterWater = beforeWater + water
-                    uDM.saveTgWater(tgID: t.id, water: afterWater)
-
-                } else {
-                    raiseWaterTF.text = nil
-                    raiseWaterTF.placeholder = "정수만 입력 가능"
-                }
-            }
+        if let t = self.tamagotchi {
+            saveResult(tamagotchi: t, raiseThing: Raise.water, textField: raiseWaterTF)
         }
 
         configureMainVIewUI()
@@ -349,6 +274,67 @@ class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationItem.title = "\(uDM.loadUserName())님의 다마고치"
+        navigationItem.title = "\(uDM.userName)님의 다마고치"
+    }
+    
+}
+
+extension MainViewController {
+    
+    func saveResult(tamagotchi: Tamagotchi, raiseThing: Raise, textField: UITextField) {
+        var before: Int
+        
+        if let text = textField.text {
+            if text.isEmpty {
+                switch raiseThing {
+                case .rice:
+                    before = tamagotchi.rice
+                    let after = before + 1
+                    
+                    var t = tamagotchi
+                    t.rice = after
+                    textField.placeholder = Raise.rice.placeholderText
+                case .water:
+                    before = tamagotchi.water
+                    let after = before + 1
+                    var t = tamagotchi
+                    t.water = after
+                    textField.placeholder = Raise.water.placeholderText
+                }
+            } else {
+                if let int = Int(text) {
+                    guard int > 0 else {
+                        textField.text = nil
+                        textField.placeholder = "0 이상 입력 가능"
+                        
+                        return
+                    }
+                    guard int < 50 else {
+                        textField.text = nil
+                        textField.placeholder = "50 미만 입력 가능"
+                        
+                        return
+                    }
+                    
+                    switch raiseThing {
+                    case .rice:
+                        before = tamagotchi.rice
+                        let after = before + int
+                        var t = tamagotchi
+                        t.rice = after
+                        textField.placeholder = Raise.rice.placeholderText
+                    case .water:
+                        before = tamagotchi.water
+                        let after = before + int
+                        var t = tamagotchi
+                        t.water = after
+                        textField.placeholder = Raise.water.placeholderText
+                    }
+                } else {
+                    textField.text = nil
+                    textField.placeholder = "정수만 입력 가능"
+                }
+            }
+        }
     }
 }

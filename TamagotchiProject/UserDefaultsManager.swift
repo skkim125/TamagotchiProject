@@ -23,51 +23,30 @@ class UserDefaultsManager {
         }
     }
     
-    func saveUserName(userName: String) {
-        userDefaults.set(userName, forKey: UserDefaultsKey.userName.rawValue)
-    }
-    
-    func saveFirst_Reset(_ bool: Bool) {
-        userDefaults.setValue(bool, forKey: UserDefaultsKey.first_Reset.rawValue)
-    }
-    
-    func saveLastTg(id: Int) {
-        UserDefaults.standard.set(id, forKey: UserDefaultsKey.lastTgID.rawValue)
-    }
-    
-    func saveTgRice(tgID: Int, rice: Int) {
-        userDefaults.setValue(rice, forKey: UserDefaultsKey.tgRiceKey(tgId: tgID))
-    }
-    
-    func saveTgWater(tgID: Int, water: Int) {
-        userDefaults.setValue(water, forKey: UserDefaultsKey.tgWaterKey(tgId: tgID))
-    }
-    
-    func loadUserName() -> String {
-        guard let userName = userDefaults.string(forKey: UserDefaultsKey.userName.rawValue) else {
-            return "대장"
+    var userName: String {
+        get {
+            guard let userName = userDefaults.string(forKey: UserDefaultsKey.userName.rawValue) else {
+                return "대장"
+            }
+            return userName
         }
-        return userName
+        
+        set { userDefaults.setValue(newValue, forKey: UserDefaultsKey.userName.rawValue) }
     }
     
-    func loadFirst_Reset() -> Bool {
-        return userDefaults.bool(forKey: UserDefaultsKey.first_Reset.rawValue)
+    var firstReset: Bool {
+        get { userDefaults.bool(forKey: UserDefaultsKey.first_Reset.rawValue) }
+        set { userDefaults.setValue(newValue, forKey: UserDefaultsKey.first_Reset.rawValue) }
     }
     
-    func loadLastTg() -> Int {
-        return userDefaults.integer(forKey: UserDefaultsKey.lastTgID.rawValue)
+    var lastTg: Int {
+        get { userDefaults.integer(forKey: UserDefaultsKey.lastTgID.rawValue) }
+        set { userDefaults.setValue(newValue, forKey: UserDefaultsKey.lastTgID.rawValue) }
     }
     
-    func loadTgRice(tgID: Int) -> Int {
-       return userDefaults.integer(forKey: UserDefaultsKey.tgRiceKey(tgId: tgID))
-    }
-    
-    func loadTgWater(tgID: Int) -> Int {
-        return userDefaults.integer(forKey: UserDefaultsKey.tgWaterKey(tgId: tgID))
-    }
     
     func reset() {
-        var list = User.user.tamagotchiList
+        var list = TamagotchiManager.shared.tamagotchiList
         for i in 0...list.count-1 {
             list[i].rice = 0
             list[i].water = 0
@@ -78,6 +57,5 @@ class UserDefaultsManager {
         userDefaults.removeObject(forKey: UserDefaultsKey.userName.rawValue)
         userDefaults.removeObject(forKey: UserDefaultsKey.first_Reset.rawValue)
         userDefaults.removeObject(forKey: UserDefaultsKey.lastTgID.rawValue)
-        User.userName = "대장"
     }
 }

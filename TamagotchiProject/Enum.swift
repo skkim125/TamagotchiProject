@@ -52,3 +52,17 @@ enum ViewType {
         }
     }
 }
+
+enum Raise: String {
+    case rice = "밥주기"
+    case water = "물주기"
+    
+    var placeholderText: String {
+        switch self {
+        case .rice:
+            "밥주세요"
+        case .water:
+            "물주세요"
+        }
+    }
+}

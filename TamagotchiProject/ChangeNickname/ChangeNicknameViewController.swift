@@ -67,18 +67,17 @@ class ChangeNicknameViewController: UIViewController {
     }
     
     func configureTF() {
-        nicknameTF.placeholder = udm.loadUserName()
+        nicknameTF.placeholder = udm.userName
     }
     
     @objc func saveButtonClicked() {
         
         if let text = self.nicknameTF.text, !text.isEmpty {
-            udm.saveUserName(userName: text)
-            User.userName = text
+            udm.userName = text
             
         } else {
             if let placeholder = nicknameTF.placeholder {
-                udm.saveUserName(userName: placeholder)
+                udm.userName = placeholder
             }
         }
         
